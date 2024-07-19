@@ -21,6 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\StockManagement.Data\StockManagement.Data.csproj" />
     <ProjectReference Include="..\StockManagement.Identity\StockManagement.Identity.csproj" />
   </ItemGroup>
 

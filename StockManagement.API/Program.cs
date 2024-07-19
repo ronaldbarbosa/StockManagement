@@ -1,10 +1,14 @@
 using Microsoft.EntityFrameworkCore;
+using StockManagement.Data;
 using StockManagement.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<IdentityDBContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("IdentityConnection"))
+);
+builder.Services.AddDbContext<DataDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DataConnection"))
 );
 
 // Add services to the container.
