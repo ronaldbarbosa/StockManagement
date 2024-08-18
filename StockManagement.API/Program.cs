@@ -1,4 +1,6 @@
 using Microsoft.EntityFrameworkCore;
+using StockManagement.Application.Services;
+using StockManagement.Core.Interfaces.Services;
 using StockManagement.Data;
 using StockManagement.Identity;
 
@@ -11,6 +13,8 @@ builder.Services.AddDbContext<IdentityDBContext>(options =>
 builder.Services.AddDbContext<DataDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DataConnection"))
 );
+
+builder.Services.AddTransient<ICategoryService, CategoryService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

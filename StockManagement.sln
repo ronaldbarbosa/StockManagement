@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockManagement.Data", "Sto
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockManagement.Identity", "StockManagement.Identity\StockManagement.Identity.csproj", "{99FD187E-0967-4A3B-8889-D6E125D0D0CD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockManagement.Api", "StockManagement.Api\StockManagement.Api.csproj", "{D81ECB93-ED15-4405-90AB-6A4DF100499E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockManagement.Api", "StockManagement.Api\StockManagement.Api.csproj", "{D81ECB93-ED15-4405-90AB-6A4DF100499E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockManagement.Application", "StockManagement.Application\StockManagement.Application.csproj", "{01E8C81E-0294-4A7E-A52B-5CE59DE138A6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{D81ECB93-ED15-4405-90AB-6A4DF100499E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D81ECB93-ED15-4405-90AB-6A4DF100499E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D81ECB93-ED15-4405-90AB-6A4DF100499E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01E8C81E-0294-4A7E-A52B-5CE59DE138A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01E8C81E-0294-4A7E-A52B-5CE59DE138A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01E8C81E-0294-4A7E-A52B-5CE59DE138A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01E8C81E-0294-4A7E-A52B-5CE59DE138A6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

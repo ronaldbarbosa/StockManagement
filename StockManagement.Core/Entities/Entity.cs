@@ -1,6 +1,6 @@
 ﻿namespace StockManagement.Core.Entities
 {
-    public abstract class EntityBase(Guid createdBy)
+    public abstract class Entity(Guid createdBy)
     {
         public Guid Id { get; private set; } = Guid.NewGuid();
         public DateTime CreatedAt { get; set; } = DateTime.Now;

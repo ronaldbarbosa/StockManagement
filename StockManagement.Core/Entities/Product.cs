@@ -2,7 +2,7 @@
 
 namespace StockManagement.Core.Entities
 {
-    public class Product : EntityBase
+    public class Product : Entity
     {
         public string SKU { get; private set; } = string.Empty;
         public string Name { get; set; } = string.Empty;
