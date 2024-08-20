@@ -11,8 +11,4 @@
     <ProjectReference Include="..\StockManagement.Data\StockManagement.Data.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="DTOs\Response\" />
-  </ItemGroup>
-
 </Project>

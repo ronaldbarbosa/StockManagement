@@ -5,7 +5,7 @@ using StockManagement.Identity.Entities;
 
 namespace StockManagement.Identity
 {
-    public class IdentityDBContext(DbContextOptions options) : IdentityDbContext<User, Role, Guid>(options)
+    public class IdentityDBContext(DbContextOptions<IdentityDBContext> options) : IdentityDbContext<User, Role, Guid>(options)
     {
         protected override void OnModelCreating(ModelBuilder builder)
         {

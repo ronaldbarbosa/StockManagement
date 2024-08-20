@@ -4,7 +4,7 @@ using System.Reflection;
 
 namespace StockManagement.Data
 {
-    public class DataDbContext(DbContextOptions options) : DbContext(options)
+    public class DataDbContext(DbContextOptions<DataDbContext> options) : DbContext(options)
     {
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }

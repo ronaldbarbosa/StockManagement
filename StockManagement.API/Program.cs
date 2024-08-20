@@ -1,38 +1,59 @@
-using Microsoft.EntityFrameworkCore;
-using StockManagement.Application.Services;
-using StockManagement.Core.Interfaces.Services;
-using StockManagement.Data;
-using StockManagement.Identity;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.OpenApi.Models;
+using StockManagement.Api.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-builder.Services.AddDbContext<IdentityDBContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("IdentityConnection"))
-);
-builder.Services.AddDbContext<DataDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DataConnection"))
-);
-
-builder.Services.AddTransient<ICategoryService, CategoryService>();
-
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(setup =>
+{
+    // Include 'SecurityScheme' to use JWT Authentication
+    var jwtSecurityScheme = new OpenApiSecurityScheme
+    {
+        BearerFormat = "JWT",
+        Name = "JWT Authentication",
+        In = ParameterLocation.Header,
+        Type = SecuritySchemeType.Http,
+        Scheme = JwtBearerDefaults.AuthenticationScheme,
+        Description = "Put **_ONLY_** your JWT Bearer token on textbox below!",
+
+        Reference = new OpenApiReference
+        {
+            Id = JwtBearerDefaults.AuthenticationScheme,
+            Type = ReferenceType.SecurityScheme
+        }
+    };
+
+    setup.AddSecurityDefinition(jwtSecurityScheme.Reference.Id, jwtSecurityScheme);
+
+    setup.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        { jwtSecurityScheme, Array.Empty<string>() }
+    });
+
+});
+
+builder.Services.AddCors();
+builder.Services.AddControllers();
+builder.Services.AddRouting(options => options.LowercaseUrls = true);
+builder.Services.AddAuthentication(builder.Configuration);
+builder.AddDataContexts();
+builder.AddServices();
+builder.Services.ConfigureIdentity();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
-
 app.UseHttpsRedirection();
-
+app.UseSwagger();
+app.UseSwaggerUI();
+app.UseAuthentication();
 app.UseAuthorization();
+app.UseCors(builder => builder
+    .SetIsOriginAllowed(origin => true)
+    .AllowAnyMethod()
+    .AllowAnyHeader()
+    .AllowCredentials()
+);
 
 app.MapControllers();
 
