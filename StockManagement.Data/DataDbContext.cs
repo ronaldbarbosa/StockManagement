@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using StockManagement.Core.Entities;
+using StockManagement.Domain.Entities;
 using System.Reflection;
 
 namespace StockManagement.Data

@@ -1,4 +1,4 @@
-﻿namespace StockManagement.Core.Entities.Responses
+﻿namespace StockManagement.Domain.Entities.Responses
 {
     public static class ResponseMessages
     {

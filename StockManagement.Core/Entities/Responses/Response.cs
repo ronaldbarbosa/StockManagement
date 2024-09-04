@@ -1,7 +1,7 @@
 ﻿using System.Net;
 using System.Text.Json.Serialization;
 
-namespace StockManagement.Core.Entities.Responses
+namespace StockManagement.Domain.Entities.Responses
 {
     public class Response<TData>
     {

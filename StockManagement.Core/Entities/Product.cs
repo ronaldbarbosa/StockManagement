@@ -1,6 +1,6 @@
-﻿using StockManagement.Core.Enums;
+﻿using StockManagement.Domain.Enums;
 
-namespace StockManagement.Core.Entities
+namespace StockManagement.Domain.Entities
 {
     public class Product : Entity
     {

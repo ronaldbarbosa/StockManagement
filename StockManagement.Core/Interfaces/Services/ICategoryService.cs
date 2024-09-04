@@ -1,8 +1,8 @@
-﻿using StockManagement.Core.Entities;
+﻿using StockManagement.Domain.Entities;
 
-namespace StockManagement.Core.Interfaces.Services
+namespace StockManagement.Domain.Interfaces.Services
 {
-    public interface ICategoryService : IService<Category>
+    public interface ICategoryService : IServiceBase<Category>
     {
     }
 }

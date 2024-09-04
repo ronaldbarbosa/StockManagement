@@ -1,10 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using StockManagement.Application.Interfaces.Services;
-using StockManagement.Application.Services;
-using StockManagement.Core.Interfaces.Services;
 using StockManagement.Data;
 using StockManagement.Identity;
 using StockManagement.Identity.Services;
+using StockManagement.Domain.Interfaces.Repositories;
+using StockManagement.Data.Repositories;
+using StockManagement.Domain.Interfaces.Services;
+using StockManagement.Domain.Services;
+using StockManagement.Application.Services;
 
 namespace StockManagement.Api.Extensions
 {
@@ -22,9 +25,18 @@ namespace StockManagement.Api.Extensions
 
         public static void AddServices(this WebApplicationBuilder builder)
         {
-            builder.Services.AddScoped<IIdentityService, IdentityService>();
+            // Repositories
+            builder.Services.AddScoped(typeof(IRepositoryBase<>), typeof(RepositoryBase<>));
+            builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 
-            builder.Services.AddScoped<ICategoryService, CategoryService>();           
+            // Services
+            builder.Services.AddScoped(typeof(IServiceBase<>), typeof(ServiceBase<>));
+            builder.Services.AddScoped<ICategoryService, CategoryService>();
+
+            // AppServices
+            builder.Services.AddScoped<ICategoryAppService, CategoryAppService>();
+
+            builder.Services.AddScoped<IIdentityService, IdentityService>();          
         }
     }
 }

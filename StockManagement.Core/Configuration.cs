@@ -1,4 +1,4 @@
-﻿namespace StockManagement.Core
+﻿namespace StockManagement.Domain
 {
     public static class Configuration
     {

@@ -1,6 +1,6 @@
 ﻿using StockManagement.Application.DTOs.Request;
 using StockManagement.Application.DTOs.Response;
-using StockManagement.Core.Entities.Responses;
+using StockManagement.Domain.Entities.Responses;
 
 namespace StockManagement.Application.Interfaces.Services
 {

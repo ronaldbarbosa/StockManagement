@@ -1,4 +1,4 @@
-﻿namespace StockManagement.Core.Entities
+﻿namespace StockManagement.Domain.Entities
 {
     public class Category(string name, Guid createdBy) : Entity(createdBy)
     {

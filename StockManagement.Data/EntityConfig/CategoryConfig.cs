@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using StockManagement.Core.Entities;
+using StockManagement.Domain.Entities;
 
 namespace StockManagement.Data.EntityConfig
 {

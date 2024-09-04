@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\StockManagement.Core\StockManagement.Core.csproj" />
+    <ProjectReference Include="..\StockManagement.Core\StockManagement.Domain.csproj" />
     <ProjectReference Include="..\StockManagement.Data\StockManagement.Data.csproj" />
   </ItemGroup>
 

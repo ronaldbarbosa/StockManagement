@@ -1,4 +1,4 @@
-﻿namespace StockManagement.Core.Enums
+﻿namespace StockManagement.Domain.Enums
 {
     public enum UnitOfMeasurement
     {

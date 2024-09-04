@@ -1,4 +1,4 @@
-﻿namespace StockManagement.Core.Entities.Requests
+﻿namespace StockManagement.Domain.Entities.Requests
 {
     public class Request<TData>
     {

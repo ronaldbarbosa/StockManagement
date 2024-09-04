@@ -2,7 +2,7 @@
 
 namespace StockManagement.Application.DTOs.Response
 {
-    public class LoginResponse
+    public class LoginResponse : ResponseBase
     {
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public string? AccessToken { get; set; }

@@ -3,7 +3,7 @@ using Microsoft.Extensions.Options;
 using StockManagement.Application.DTOs.Request;
 using StockManagement.Application.DTOs.Response;
 using StockManagement.Application.Interfaces.Services;
-using StockManagement.Core.Entities.Responses;
+using StockManagement.Domain.Entities.Responses;
 using StockManagement.Identity.Entities;
 using System.IdentityModel.Tokens.Jwt;
 using System.Net;
