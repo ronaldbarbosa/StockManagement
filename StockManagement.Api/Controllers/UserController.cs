@@ -9,7 +9,6 @@ namespace StockManagement.Api.Controllers
     [ApiController]
     public class UserController(IIdentityService identityService) : ControllerBase
     {
-        // TODO: Configurar o serviço de acordo com nova estrutura
         private IIdentityService _identityService = identityService;
 
         [HttpPost("cadastro")]
@@ -23,11 +22,7 @@ namespace StockManagement.Api.Controllers
                 };
             }
 
-            return new CreateUserResponse()
-            {
-                Succeded = false,
-            };
-            //return await _identityService.CreateUser(request);
+            return await _identityService.CreateUser(request);
         }
 
         [HttpPost("login")]
@@ -38,8 +33,7 @@ namespace StockManagement.Api.Controllers
                 return new LoginResponse();
             }
 
-            return new LoginResponse();
-            //return await _identityService.Login(request);
+            return await _identityService.Login(request);
         }
     }
 }

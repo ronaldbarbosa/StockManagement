@@ -3,7 +3,6 @@ using Microsoft.Extensions.Options;
 using StockManagement.Application.DTOs.Request;
 using StockManagement.Application.DTOs.Response;
 using StockManagement.Application.Interfaces.Services;
-using StockManagement.Domain.Entities.Responses;
 using StockManagement.Identity.Entities;
 using System.IdentityModel.Tokens.Jwt;
 using System.Net;
@@ -24,7 +23,7 @@ namespace StockManagement.Identity.Services
             _jwtOptions = jwtOptions.Value;
         }
 
-        public async Task<Response<CreateUserResponse>?> CreateUser(CreateUserRequest request)
+        public async Task<CreateUserResponse> CreateUser(CreateUserRequest request)
         {
             try
             {
@@ -39,71 +38,55 @@ namespace StockManagement.Identity.Services
 
                 if (result.Succeeded) await _userManager.SetLockoutEnabledAsync(user, false);
 
-                var response = new Response<CreateUserResponse>(new CreateUserResponse() { Succeded = result.Succeeded });
+                var response = new CreateUserResponse();
 
                 if (!result.Succeeded)
                 {
                     response.StatusCode = HttpStatusCode.BadRequest;
-                    response.Message = ResponseMessages.RequestError;
                 }
                 else
                 {
                     response.StatusCode = HttpStatusCode.Created;
-                    response.Message = ResponseMessages.Created;
                 }
 
                 return response;
             }
             catch (Exception ex)
             {
-                return new Response<CreateUserResponse>(
-                    new CreateUserResponse() { Succeded = false },
-                    ResponseMessages.ServerError,
-                    HttpStatusCode.InternalServerError);
+                return new CreateUserResponse()
+                {
+                    StatusCode = HttpStatusCode.InternalServerError
+                };
             }
         }
 
-        public async Task<Response<LoginResponse>?> Login(LoginRequest request)
+        public async Task<LoginResponse> Login(LoginRequest request)
         {
             try
             {
                 var result = await _signInManager.PasswordSignInAsync(request.Email, request.Password, false, true);
-                var response = new Response<LoginResponse>(new LoginResponse() { });
+                var response = new LoginResponse();
 
                 if (!result.Succeeded)
                 {
-                    response.IsSuccess = false;
                     response.StatusCode = HttpStatusCode.Unauthorized;
-
-                    if (result.IsLockedOut)
-                    {
-                        response.Message = "Conta bloqueada.";
-                    }
-                    else if (result.IsNotAllowed)
-                    {
-                        response.Message = ResponseMessages.Unauthorized;
-                    }
-                    else
-                    {
-                        response.Message = "Usuário ou senha inválido(s).";
-                    }
                 }
                 else
                 {
-                    response.Data = await GenerateCredentials(request.Email);
-                    response.IsSuccess = true;
+                    var credentials = await GenerateCredentials(request.Email);
+                    response.AccessToken = credentials.AccessToken;
+                    response.RefreshToken = credentials.RefreshToken;
                     response.StatusCode = HttpStatusCode.OK;
-                    response.Message = "Login realizado com suacesso.";
                 }
 
                 return response;
             }
             catch (Exception ex)
             {
-                return new Response<LoginResponse>(
-                    null,
-                    ResponseMessages.ServerError,
-                    HttpStatusCode.InternalServerError);
+                return new LoginResponse()
+                {
+                    StatusCode = HttpStatusCode.InternalServerError
+                };
             }
         }
 
