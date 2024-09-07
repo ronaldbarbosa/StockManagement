@@ -1,4 +1,5 @@
 ﻿using System.Net;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using StockManagement.Application.DTOs;
 using StockManagement.Application.DTOs.Request;
@@ -7,8 +8,9 @@ using StockManagement.Application.Interfaces.Services;
 
 namespace StockManagement.Api.Controllers
 {
-    [Route("api/[controller]")]
+    [Authorize]    
     [ApiController]
+    [Route("api/[controller]")]
     public class CategoryController(ICategoryAppService appService) : ControllerBase
     {
         private readonly ICategoryAppService _appService = appService;

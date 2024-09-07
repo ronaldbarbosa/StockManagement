@@ -36,10 +36,10 @@ builder.Services.AddSwaggerGen(setup =>
 builder.Services.AddCors();
 builder.Services.AddControllers();
 builder.Services.AddRouting(options => options.LowercaseUrls = true);
-builder.Services.AddAuthentication(builder.Configuration);
 builder.AddDataContexts();
 builder.AddServices();
 builder.Services.ConfigureIdentity();
+builder.Services.AddAuthentication(builder.Configuration);
 
 var app = builder.Build();
 

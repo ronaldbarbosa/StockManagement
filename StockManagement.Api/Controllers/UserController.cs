@@ -5,8 +5,8 @@ using StockManagement.Application.Interfaces.Services;
 
 namespace StockManagement.Api.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/usuario")]       
     public class UserController(IIdentityService identityService) : ControllerBase
     {
         private IIdentityService _identityService = identityService;

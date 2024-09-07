@@ -127,7 +127,6 @@ namespace StockManagement.Identity.Services
 
             claims.Add(new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()));
             claims.Add(new Claim(JwtRegisteredClaimNames.Email, user.Email!));
-            claims.Add(new Claim(JwtRegisteredClaimNames.Iat, DateTime.Now.ToString()));
 
             if (getUserClaims)
             {
