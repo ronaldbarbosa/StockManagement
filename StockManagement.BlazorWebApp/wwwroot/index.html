@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>StockManagement.BlazorWebApp</title>
+    <base href="/" />
+
+    <script src="js/plugin/webfont/webfont.min.js"></script>
+    <script>
+        WebFont.load({
+            google: { families: ["Public Sans:300,400,500,600,700"] },
+            custom: {
+                families: [
+                    "Font Awesome 5 Solid",
+                    "Font Awesome 5 Regular",
+                    "Font Awesome 5 Brands",
+                    "simple-line-icons",
+                ],
+                urls: ["css/fonts.min.css"],
+            },
+            active: function () {
+                sessionStorage.fonts = true;
+            },
+        });
+    </script>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/plugins.min.css" />
+    <link rel="stylesheet" href="css/kaiadmin.min.css" />
+    <link href="styles.css" rel="stylesheet" />
+    <link href="prism.css" rel="stylesheet" />
+
+    <link href="manifest.webmanifest" rel="manifest" />
+    <link rel="apple-touch-icon" sizes="512x512" href="icon-512.png" />
+    <link rel="apple-touch-icon" sizes="192x192" href="icon-192.png" />
+</head>
+
+<body>
+    <div id="app">
+        <svg class="loading-progress">
+            <circle r="40%" cx="50%" cy="50%" />
+            <circle r="40%" cx="50%" cy="50%" />
+        </svg>
+        <div class="loading-progress-text"></div>
+    </div>
+
+    <div id="blazor-error-ui">
+        An unhandled error has occurred.
+        <a href="" class="reload">Reload</a>
+        <a class="dismiss">🗙</a>
+    </div>
+
+    <script src="js/core/jquery-3.7.1.min.js"></script>
+    <script src="js/core/popper.min.js"></script>
+    <script src="js/core/bootstrap.min.js"></script>
+    <script src="js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
+    <script src="js/plugin/chart.js/chart.min.js"></script>
+    <script src="js/plugin/jquery.sparkline/jquery.sparkline.min.js"></script>
+    <script src="js/plugin/chart-circle/circles.min.js"></script>
+    <script src="js/plugin/datatables/datatables.min.js"></script>
+    <script src="js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>
+    <script src="js/plugin/jsvectormap/jsvectormap.min.js"></script>
+    <script src="js/plugin/jsvectormap/world.js"></script>
+    <script src="js/plugin/sweetalert/sweetalert.min.js"></script>
+    <script src="js/kaiadmin.min.js"></script>
+    <script src="prism.js"></script>
+    <script src="prism-normalize-whitespace.min.js"></script>
+
+    <script src="_framework/blazor.webassembly.js"></script>
+    <script>navigator.serviceWorker.register('service-worker.js');</script>
+</body>
+</html>
