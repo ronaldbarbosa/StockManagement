@@ -12,17 +12,23 @@ namespace StockManagement.Api.Extensions
     {
         public static void ConfigureIdentity(this IServiceCollection services)
         {
-            services.AddIdentity<User, Role>()
+            
+            services.AddIdentityCore<User>()
+                .AddRoles<Role>()
                 .AddEntityFrameworkStores<IdentityDBContext>()
-                .AddDefaultTokenProviders();
+                .AddDefaultTokenProviders()
+                .AddApiEndpoints();
+
             services.Configure<IdentityOptions>(options =>
             {
                 options.User.RequireUniqueEmail = true;
+                options.SignIn.RequireConfirmedEmail = false;
             });
         }
 
         public static void AddAuthentication(this IServiceCollection services, IConfiguration configuration)
         {
+            services.AddAuthorizationBuilder();
             var jwtOptions = configuration.GetSection(nameof(JwtOptions));
             var securityKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(configuration.GetSection("JwtOptions:SecurityKey").Value!));
 
@@ -68,7 +74,7 @@ namespace StockManagement.Api.Extensions
             }).AddJwtBearer(options =>
             {
                 options.TokenValidationParameters = tokenValidationParameters;
-            });
+            }).AddIdentityCookies();
         }
     }
 }

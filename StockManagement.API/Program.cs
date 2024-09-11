@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.OpenApi.Models;
 using StockManagement.Api.Extensions;
+using StockManagement.Identity.Entities;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -43,18 +44,19 @@ builder.Services.AddAuthentication(builder.Configuration);
 
 var app = builder.Build();
 
-app.UseHttpsRedirection();
-app.UseSwagger();
-app.UseSwaggerUI();
 app.UseAuthentication();
 app.UseAuthorization();
+app.UseHttpsRedirection();
+app.MapIdentityApi<User>();
+app.UseSwagger();
+app.UseSwaggerUI();
+
 app.UseCors(builder => builder
     .SetIsOriginAllowed(origin => true)
     .AllowAnyMethod()
     .AllowAnyHeader()
     .AllowCredentials()
 );
-
 app.MapControllers();
 
 app.Run();
