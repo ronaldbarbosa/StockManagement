@@ -44,7 +44,7 @@ namespace StockManagement.Domain.Services
             if (entity != null)
             {
                 entity = request;
-                _repository.UpdateAsync(entity);
+                await _repository.UpdateAsync(entity);
             }
         }
 

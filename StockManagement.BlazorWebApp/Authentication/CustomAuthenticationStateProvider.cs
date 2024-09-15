@@ -3,9 +3,9 @@ using StockManagement.Application.DTOs;
 using System.Net.Http.Json;
 using System.Security.Claims;
 
-namespace StockManagement.BlazorWebApp
+namespace StockManagement.BlazorWebApp.Authentication
 {
-    public class CustomAuthStateProvider(IHttpClientFactory clientFactory) : AuthenticationStateProvider
+    public class CustomAuthenticationStateProvider(IHttpClientFactory clientFactory) : AuthenticationStateProvider, ICustomAuthenticationStateProvider
     {
         private bool _isAuthenticated = false;
         private readonly HttpClient _client = clientFactory.CreateClient("client");
@@ -30,7 +30,7 @@ namespace StockManagement.BlazorWebApp
 
             var claims = await GetClaims(userInfo);
 
-            var id = new ClaimsIdentity(claims, nameof(CustomAuthStateProvider));
+            var id = new ClaimsIdentity(claims, nameof(CustomAuthenticationStateProvider));
             user = new ClaimsPrincipal(id);
 
             _isAuthenticated = true;

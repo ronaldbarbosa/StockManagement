@@ -1,0 +1,25 @@
+﻿@page "/Login"
+@attribute [AllowAnonymous]
+@layout PublicLayout
+@inherits LoginPage
+
+<h3 class="text-center">Login</h3>
+
+<EditForm Model="@InputModel" OnValidSubmit="OnValidSubmitAsync">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="row flex-column align-items-center">
+        <div class="form-group col-4">
+            <label for="@InputModel.Email">@nameof(@InputModel.Email)</label>
+            <InputText id="email" class="form-control" @bind-Value="InputModel.Email" />
+            <ValidationMessage For="@(() => InputModel.Email)" />
+        </div>
+        <div class="form-group col-4">
+            <label for="@InputModel.Password">@nameof(@InputModel.Password)</label>
+            <InputText id="password" type="password" class="form-control" @bind-Value="InputModel.Password" />
+            <ValidationMessage For="@(() => InputModel.Password)" />
+        </div>
+        <button type="submit" class="btn btn-md btn-primary w-auto">Login</button>
+    </div>        
+</EditForm>

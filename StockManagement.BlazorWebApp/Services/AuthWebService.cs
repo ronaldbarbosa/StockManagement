@@ -1,4 +1,5 @@
 ﻿using StockManagement.Application.DTOs.Request;
+using StockManagement.BlazorWebApp.Services.Interfaces;
 using System.Net.Http.Json;
 
 namespace StockManagement.BlazorWebApp.Services

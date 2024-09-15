@@ -1,7 +1,7 @@
 ﻿
 using Microsoft.AspNetCore.Components.WebAssembly.Http;
 
-namespace StockManagement.BlazorWebApp
+namespace StockManagement.BlazorWebApp.Authentication
 {
     public class CookieHandler : DelegatingHandler
     {

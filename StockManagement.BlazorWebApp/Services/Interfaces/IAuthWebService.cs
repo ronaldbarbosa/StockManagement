@@ -1,7 +1,7 @@
 ﻿using StockManagement.Application.DTOs.Request;
 using StockManagement.Application.DTOs.Response;
 
-namespace StockManagement.BlazorWebApp.Services
+namespace StockManagement.BlazorWebApp.Services.Interfaces
 {
     public interface IAuthWebService
     {
