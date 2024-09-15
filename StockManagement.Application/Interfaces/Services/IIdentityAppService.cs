@@ -3,7 +3,7 @@ using StockManagement.Application.DTOs.Response;
 
 namespace StockManagement.Application.Interfaces.Services
 {
-    public interface IIdentityService
+    public interface IIdentityAppService
     {
         Task<CreateUserResponse> CreateUser(CreateUserRequest request);
         Task<LoginResponse> Login(LoginRequest request);

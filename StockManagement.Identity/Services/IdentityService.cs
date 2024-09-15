@@ -10,7 +10,7 @@ using System.Security.Claims;
 
 namespace StockManagement.Identity.Services
 {
-    public class IdentityService : IIdentityService
+    public class IdentityService : IIdentityAppService
     {
         private readonly SignInManager<User> _signInManager;
         private readonly UserManager<User> _userManager;

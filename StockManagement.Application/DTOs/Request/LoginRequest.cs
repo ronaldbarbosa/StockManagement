@@ -11,7 +11,6 @@ namespace StockManagement.Application.DTOs.Request
         public string Email { get; set; } = string.Empty;
 
         [Display(Name = "Senha")]
-        [JsonPropertyName("senha")]
         [Required(ErrorMessage = "O campo Senha é obrigatório.")]
         public string Password { get; set; } = string.Empty;
     }

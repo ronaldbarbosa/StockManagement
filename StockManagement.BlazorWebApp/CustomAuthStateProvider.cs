@@ -1,60 +1,85 @@
-﻿using Blazored.LocalStorage;
-using Microsoft.AspNetCore.Components.Authorization;
-using System.Net.Http.Headers;
+﻿using Microsoft.AspNetCore.Components.Authorization;
+using StockManagement.Application.DTOs;
+using System.Net.Http.Json;
 using System.Security.Claims;
-using System.Text.Json;
 
 namespace StockManagement.BlazorWebApp
 {
-    public class CustomAuthStateProvider : AuthenticationStateProvider
+    public class CustomAuthStateProvider(IHttpClientFactory clientFactory) : AuthenticationStateProvider
     {
-        private readonly ILocalStorageService _localStorage;
-        private readonly HttpClient _http;
+        private bool _isAuthenticated = false;
+        private readonly HttpClient _client = clientFactory.CreateClient("client");
 
-        public CustomAuthStateProvider(ILocalStorageService localStorage, HttpClient http)
+        public async Task<bool> CheckAuthenticatedAsync()
         {
-            _localStorage = localStorage;
-            _http = http;
+            await GetAuthenticationStateAsync();
+            return _isAuthenticated;
         }
+
+        public void NotifyAuthenticationStateChanged()
+            => NotifyAuthenticationStateChanged(GetAuthenticationStateAsync());
 
         public override async Task<AuthenticationState> GetAuthenticationStateAsync()
         {
-            string token = await _localStorage.GetItemAsStringAsync("token");
+            _isAuthenticated = false;
+            var user = new ClaimsPrincipal(new ClaimsIdentity());
 
-            var identity = new ClaimsIdentity();
-            _http.DefaultRequestHeaders.Authorization = null;
+            var userInfo = await GetUser();
+            if (userInfo is null)
+                return new AuthenticationState(user);
 
-            if (!string.IsNullOrEmpty(token))
-            {
-                identity = new ClaimsIdentity(ParseClaimsFromJwt(token), "jwt");
-                _http.DefaultRequestHeaders.Authorization =
-                    new AuthenticationHeaderValue("Bearer", token.Replace("\"", ""));
-            }
+            var claims = await GetClaims(userInfo);
 
-            var user = new ClaimsPrincipal(identity);
-            var state = new AuthenticationState(user);
+            var id = new ClaimsIdentity(claims, nameof(CustomAuthStateProvider));
+            user = new ClaimsPrincipal(id);
 
-            NotifyAuthenticationStateChanged(Task.FromResult(state));
-
-            return state;
+            _isAuthenticated = true;
+            return new AuthenticationState(user);
         }
 
-        public static IEnumerable<Claim> ParseClaimsFromJwt(string jwt)
+        private async Task<UserDTO?> GetUser()
         {
-            var payload = jwt.Split('.')[1];
-            var jsonBytes = ParseBase64WithoutPadding(payload);
-            var keyValuePairs = JsonSerializer.Deserialize<Dictionary<string, object>>(jsonBytes);
-            return keyValuePairs.Select(kvp => new Claim(kvp.Key, kvp.Value.ToString()));
+            try
+            {
+                return await _client.GetFromJsonAsync<UserDTO?>("manage/info");
+            }
+            catch
+            {
+                return null;
+            }
         }
 
-        private static byte[] ParseBase64WithoutPadding(string base64)
+        private async Task<List<Claim>> GetClaims(UserDTO user)
         {
-            switch (base64.Length % 4)
+            var claims = new List<Claim>
+        {
+            new(ClaimTypes.Name, user.Email),
+            new(ClaimTypes.Email, user.Email)
+        };
+
+            claims.AddRange(
+                user.Claims.Where(x =>
+                        x.Key != ClaimTypes.Name &&
+                        x.Key != ClaimTypes.Email)
+                    .Select(x
+                        => new Claim(x.Key, x.Value))
+            );
+
+            RoleClaimDTO[]? roles;
+            try
             {
-                case 2: base64 += "=="; break;
-                case 3: base64 += "="; break;
+                roles = await _client.GetFromJsonAsync<RoleClaimDTO[]>("v1/identity/roles");
             }
-            return Convert.FromBase64String(base64);
+            catch
+            {
+                return claims;
+            }
+
+            foreach (var role in roles ?? [])
+                if (!string.IsNullOrEmpty(role.Type) && !string.IsNullOrEmpty(role.Value))
+                    claims.Add(new Claim(role.Type, role.Value, role.ValueType, role.Issuer, role.OriginalIssuer));
+
+            return claims;
         }
     }
 }

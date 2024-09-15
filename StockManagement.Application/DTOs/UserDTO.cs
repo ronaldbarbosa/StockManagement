@@ -1,6 +1,4 @@
-﻿using System.Security.Claims;
-
-namespace StockManagement.Application.DTOs
+﻿namespace StockManagement.Application.DTOs
 {
     public class UserDTO
     {
@@ -8,6 +6,6 @@ namespace StockManagement.Application.DTOs
         public string Email { get; set; } = string.Empty;
         public string Name { get; set; } = string.Empty;
 
-        public List<Claim> Claims { get; set; }
+        public Dictionary<string, string> Claims { get; set; } = [];
     }
 }

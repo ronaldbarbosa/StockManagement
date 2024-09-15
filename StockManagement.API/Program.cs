@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.Extensions.Configuration;
 using Microsoft.OpenApi.Models;
 using StockManagement.Api.Extensions;
+using StockManagement.Domain;
 using StockManagement.Identity.Entities;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -34,7 +36,15 @@ builder.Services.AddSwaggerGen(setup =>
 
 });
 
-builder.Services.AddCors();
+builder.Services.AddCors(
+    options => options.AddPolicy(
+        "wasm",
+        policy => policy.WithOrigins([builder.Configuration["BackendUrl"] ?? "https://localhost:7178",
+            builder.Configuration["FrontendUrl"] ?? "https://localhost:7102"])
+            .AllowAnyMethod()
+            .AllowAnyHeader()
+            .AllowCredentials()));
+
 builder.Services.AddControllers();
 builder.Services.AddRouting(options => options.LowercaseUrls = true);
 builder.AddDataContexts();
@@ -44,6 +54,8 @@ builder.Services.AddAuthentication(builder.Configuration);
 
 var app = builder.Build();
 
+app.UseCors("wasm");
+
 app.UseAuthentication();
 app.UseAuthorization();
 app.UseHttpsRedirection();
@@ -51,12 +63,6 @@ app.MapIdentityApi<User>();
 app.UseSwagger();
 app.UseSwaggerUI();
 
-app.UseCors(builder => builder
-    .SetIsOriginAllowed(origin => true)
-    .AllowAnyMethod()
-    .AllowAnyHeader()
-    .AllowCredentials()
-);
 app.MapControllers();
 
 app.Run();

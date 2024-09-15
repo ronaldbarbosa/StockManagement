@@ -2,6 +2,85 @@
 @attribute [AllowAnonymous]
 @layout PublicLayout
 
-<h3>Login</h3>
+<h3 class="text-center">Login</h3>
 
-<p>Teste</p>
+<EditForm Model="@InputModel" OnValidSubmit="OnValidSubmitAsync">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="row flex-column align-items-center">
+        <div class="form-group col-4">
+            <label for="@InputModel.Email">@nameof(@InputModel.Email)</label>
+            <InputText id="email" class="form-control" @bind-Value="InputModel.Email" />
+            <ValidationMessage For="@(() => InputModel.Email)" />
+        </div>
+        <div class="form-group col-4">
+            <label for="@InputModel.Password">@nameof(@InputModel.Password)</label>
+            <InputText id="password" type="password" class="form-control" @bind-Value="InputModel.Password" />
+            <ValidationMessage For="@(() => InputModel.Password)" />
+        </div>
+        <button type="submit" class="btn btn-md btn-primary w-auto">Login</button>
+    </div>
+    
+    
+</EditForm>
+
+
+@code {
+    #region services
+
+    [Inject]
+    public NavigationManager NavigationManager { get; set; } = null!;
+
+    [Inject]
+    public CustomAuthStateProvider AuthStateProvider { get; set; } = null!;
+
+    [Inject]
+    public AuthWebService AuthWebService { get; set; } = null!;
+
+    #endregion
+
+    #region properties
+    public LoginRequest InputModel { get; set; } = new();
+
+    #endregion
+
+    #region overrides
+
+    protected override async Task OnInitializedAsync()
+    {
+        var authState = await AuthStateProvider.GetAuthenticationStateAsync();
+        var user = authState.User;
+
+        if (user.Identity is { IsAuthenticated: true })
+            NavigationManager.NavigateTo("/");
+    }
+
+    #endregion
+
+    #region methods
+
+    public async Task OnValidSubmitAsync()
+    {
+        try
+        {
+            var result = await AuthWebService.LoginAsync(InputModel);
+
+            if (result.Contains("sucesso"))
+            {
+                await AuthStateProvider.GetAuthenticationStateAsync();
+                AuthStateProvider.NotifyAuthenticationStateChanged();
+                NavigationManager.NavigateTo("/");
+                Console.WriteLine(result);
+            }
+            else
+                Console.WriteLine(result);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+    }
+
+    #endregion
+}

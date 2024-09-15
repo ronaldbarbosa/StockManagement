@@ -36,7 +36,7 @@ namespace StockManagement.Api.Extensions
             // AppServices
             builder.Services.AddScoped<ICategoryAppService, CategoryAppService>();
 
-            builder.Services.AddScoped<IIdentityService, IdentityService>();
+            builder.Services.AddScoped<IIdentityAppService, IdentityService>();
         }
     }
 }

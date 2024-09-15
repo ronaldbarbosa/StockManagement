@@ -28,7 +28,6 @@ namespace StockManagement.Api.Extensions
 
         public static void AddAuthentication(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddAuthorizationBuilder();
             var jwtOptions = configuration.GetSection(nameof(JwtOptions));
             var securityKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(configuration.GetSection("JwtOptions:SecurityKey").Value!));
 
@@ -67,14 +66,12 @@ namespace StockManagement.Api.Extensions
                 ClockSkew = TimeSpan.Zero
             };
 
-            services.AddAuthentication(options =>
-            {
-                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            }).AddJwtBearer(options =>
+            services.AddAuthentication().AddJwtBearer(options =>
             {
                 options.TokenValidationParameters = tokenValidationParameters;
-            }).AddIdentityCookies();
+            }).AddCookie("Identity.Bearer");
+
+            services.AddAuthentication(IdentityConstants.ApplicationScheme).AddIdentityCookies();
         }
     }
 }
