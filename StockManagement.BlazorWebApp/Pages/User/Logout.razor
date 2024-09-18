@@ -1,0 +1,14 @@
+﻿@page "/Logout"
+@layout PublicLayout
+@inherits LogoutPage
+@attribute [AllowAnonymous]
+
+<PageTitle>SM - Sair</PageTitle>
+
+<div class="d-flex align-items-center">
+    <div class="alert alert-info" role="alert">
+        <h4>Sessão finalizada...</h4>
+        <ButtonComponent ButtonType="@ButtonTypes.button" ButtonClass="btn-primary" IconClass="fa-sign-in-alt" ButtonText="Ir para a tela de login" 
+            IsLoading="false" OnClickCallback="RedirectToLogin" />
+    </div>    
+</div>

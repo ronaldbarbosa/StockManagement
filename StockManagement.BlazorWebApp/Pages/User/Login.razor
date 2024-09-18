@@ -3,23 +3,26 @@
 @layout PublicLayout
 @inherits LoginPage
 
-<h3 class="text-center">Login</h3>
+<PageTitle>SM - Acesso</PageTitle>
 
-<EditForm Model="@InputModel" OnValidSubmit="OnValidSubmitAsync">
+<EditForm Model="@InputModel" OnValidSubmit="OnValidSubmitAsync" class="w-100 d-flex justify-content-center">
     <DataAnnotationsValidator />
-    <ValidationSummary />
 
-    <div class="row flex-column align-items-center">
-        <div class="form-group col-4">
-            <label for="@InputModel.Email">@nameof(@InputModel.Email)</label>
-            <InputText id="email" class="form-control" @bind-Value="InputModel.Email" />
-            <ValidationMessage For="@(() => InputModel.Email)" />
+    <div class="card" style="width:500px">
+        <div class="card-header border-0">
+            <h3 class="card-title text-center">Acesso</h3>
         </div>
-        <div class="form-group col-4">
-            <label for="@InputModel.Password">@nameof(@InputModel.Password)</label>
-            <InputText id="password" type="password" class="form-control" @bind-Value="InputModel.Password" />
-            <ValidationMessage For="@(() => InputModel.Password)" />
+        <div class="card-body">
+            <TextInputComponent Id="email" Label="@nameof(InputModel.Email)" Type="@InputTypes.email" Value="@InputModel.Email" 
+                ValueChanged="@(v => InputModel.Email = v)" ValueExpression="() => InputModel.Email" />
+            <TextInputComponent Id="password" Label="@nameof(InputModel.Password)" Type="@InputTypes.password" Value="@InputModel.Password" 
+                ValueChanged="@(v => InputModel.Password = v)" ValueExpression="() => InputModel.Password" />
+
+            <div class="form-group d-flex justify-content-between">
+                <ButtonComponent ButtonType="@ButtonTypes.submit" ButtonClass="btn-primary" IconClass="fa-sign-in-alt" ButtonText="Login" IsLoading="@Loading" />
+                <ButtonComponent ButtonType="@ButtonTypes.button" ButtonClass="btn-secondary" IconClass="fa-user" ButtonText="Cadastre-se" IsLoading="@false" />
+            </div>            
         </div>
-        <button type="submit" class="btn btn-md btn-primary w-auto">Login</button>
+        
     </div>        
 </EditForm>

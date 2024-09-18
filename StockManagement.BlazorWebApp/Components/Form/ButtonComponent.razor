@@ -1,0 +1,11 @@
+﻿<button @onclick="OnClick" class="btn @ButtonClass" disabled="@IsLoading">
+    @if (IsLoading)
+    {
+        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+    }
+    else
+    {
+        <i class="fas @IconClass"></i>
+    }
+    <span class="ms-2">@ButtonText</span>
+</button>

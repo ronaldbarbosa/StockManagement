@@ -22,7 +22,7 @@ namespace StockManagement.BlazorWebApp.Pages.User
 
         #region properties
         public LoginRequest InputModel { get; set; } = new();
-
+        public bool Loading { get; set; } = false;
         #endregion
 
         #region overrides
@@ -42,16 +42,16 @@ namespace StockManagement.BlazorWebApp.Pages.User
 
         public async Task OnValidSubmitAsync()
         {
+            Loading = true;
+
             try
             {
                 var result = await AuthWebService.LoginAsync(InputModel);
-
                 if (result.Contains("sucesso"))
                 {
                     await AuthStateProvider.GetAuthenticationStateAsync();
                     AuthStateProvider.NotifyAuthenticationStateChanged();
                     NavigationManager.NavigateTo("/");
-                    Console.WriteLine(result);
                 }
                 else
                     Console.WriteLine(result);
