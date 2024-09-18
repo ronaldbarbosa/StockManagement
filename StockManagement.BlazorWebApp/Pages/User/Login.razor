@@ -20,7 +20,8 @@
 
             <div class="form-group d-flex justify-content-between">
                 <ButtonComponent ButtonType="@ButtonTypes.submit" ButtonClass="btn-primary" IconClass="fa-sign-in-alt" ButtonText="Login" IsLoading="@Loading" />
-                <ButtonComponent ButtonType="@ButtonTypes.button" ButtonClass="btn-secondary" IconClass="fa-user" ButtonText="Cadastre-se" IsLoading="@false" />
+                <ButtonComponent ButtonType="@ButtonTypes.button" ButtonClass="btn-secondary" IconClass="fa-user" ButtonText="Cadastre-se" IsLoading="@false" 
+                    OnClickCallback="RedirectToRegister" />
             </div>            
         </div>
         

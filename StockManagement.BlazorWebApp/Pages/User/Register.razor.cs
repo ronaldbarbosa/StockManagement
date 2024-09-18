@@ -5,10 +5,9 @@ using StockManagement.BlazorWebApp.Services;
 
 namespace StockManagement.BlazorWebApp.Pages.User
 {
-    public partial class LoginPage : ComponentBase
+    public partial class RegisterPage : ComponentBase
     {
         #region services
-
         [Inject]
         public NavigationManager NavigationManager { get; set; } = null!;
 
@@ -21,20 +20,11 @@ namespace StockManagement.BlazorWebApp.Pages.User
         #endregion
 
         #region properties
-        public LoginRequest InputModel { get; set; } = new();
+        public CreateUserRequest InputModel { get; set; } = new();
         public bool Loading { get; set; } = false;
         #endregion
 
         #region overrides
-
-        protected override async Task OnInitializedAsync()
-        {
-            var authState = await AuthStateProvider.GetAuthenticationStateAsync();
-            var user = authState.User;
-
-            if (user.Identity is { IsAuthenticated: true })
-                NavigationManager.NavigateTo("/");
-        }
 
         #endregion
 
@@ -43,10 +33,11 @@ namespace StockManagement.BlazorWebApp.Pages.User
         public async Task OnValidSubmitAsync()
         {
             Loading = true;
-
+            // TODO: show identity's validations on register page; 
+            
             try
             {
-                var result = await AuthWebService.LoginAsync(InputModel);
+                var result = await AuthWebService.RegisterAsync(InputModel);
                 if (result.Contains("sucesso"))
                 {
                     await AuthStateProvider.GetAuthenticationStateAsync();
@@ -62,9 +53,9 @@ namespace StockManagement.BlazorWebApp.Pages.User
             }
         }
 
-        protected void RedirectToRegister()
+        protected void RedirectToLogin()
         {
-            NavigationManager.NavigateTo("/Cadastro");
+            NavigationManager.NavigateTo("/Login");
         }
 
         #endregion

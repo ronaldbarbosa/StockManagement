@@ -1,0 +1,30 @@
+﻿@page "/Cadastro"
+@attribute [AllowAnonymous]
+@layout PublicLayout
+@inherits RegisterPage
+
+<PageTitle>SM - Cadastro</PageTitle>
+
+<EditForm Model="@InputModel" OnValidSubmit="OnValidSubmitAsync" class="w-100 d-flex justify-content-center">
+    <DataAnnotationsValidator />
+
+    <div class="card" style="width: 600px;">
+        <div class="card-header border-0">
+            <h3 class="card-title text-center">Cadastro</h3>
+        </div>
+        <div class="card-body">
+            <TextInputComponent Id="email" Label="@nameof(InputModel.Email)" Type="@InputTypes.email" Value="@InputModel.Email"
+                                ValueChanged="@(v => InputModel.Email = v)" ValueExpression="() => InputModel.Email" />
+            <TextInputComponent Id="password" Label="@nameof(InputModel.Password)" Type="@InputTypes.password" Value="@InputModel.Password"
+                                ValueChanged="@(v => InputModel.Password = v)" ValueExpression="() => InputModel.Password" />
+            <TextInputComponent Id="passwordConfirm" Label="@nameof(InputModel.PasswordConfirm)" Type="@InputTypes.password" Value="@InputModel.PasswordConfirm"
+                                ValueChanged="@(v => InputModel.PasswordConfirm = v)" ValueExpression="() => InputModel.PasswordConfirm" />
+
+            <div class="form-group d-flex justify-content-between">
+                <ButtonComponent ButtonType="@ButtonTypes.submit" ButtonClass="btn-primary" IconClass="fa-user-plus" ButtonText="Cadastrar" IsLoading="@Loading" />
+                <ButtonComponent ButtonType="@ButtonTypes.button" ButtonClass="btn-black" IconClass="fa-reply" ButtonText="Voltar" IsLoading="@false" OnClickCallback="RedirectToLogin" />
+            </div>
+        </div>
+
+    </div>
+</EditForm>

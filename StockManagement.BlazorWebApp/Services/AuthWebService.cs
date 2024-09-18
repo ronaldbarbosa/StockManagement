@@ -23,9 +23,12 @@ namespace StockManagement.BlazorWebApp.Services
             await _client.PostAsJsonAsync("logout", emptyContent);
         }
 
-        public Task<string> RegisterAsync(CreateUserRequest request)
+        public async Task<string> RegisterAsync(CreateUserRequest request)
         {
-            throw new NotImplementedException();
+            var result = await _client.PostAsJsonAsync("register", request);
+            return result.IsSuccessStatusCode
+                ? "Cadastro realizado com sucesso!"
+                : "Não foi possível realizar o cadastro";
         }
     }
 }
