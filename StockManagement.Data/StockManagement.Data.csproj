@@ -15,7 +15,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\StockManagement.Core\StockManagement.Core.csproj" />
     <ProjectReference Include="..\StockManagement.Core\StockManagement.Domain.csproj" />
   </ItemGroup>
 

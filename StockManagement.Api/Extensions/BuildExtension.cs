@@ -19,7 +19,8 @@ namespace StockManagement.Api.Extensions
                 options.UseSqlServer(builder.Configuration.GetConnectionString("IdentityConnection"))
             );
             builder.Services.AddDbContext<DataDbContext>(options =>
-                options.UseSqlServer(builder.Configuration.GetConnectionString("DataConnection"))
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DataConnection"),
+                b => b.MigrationsAssembly("StockManagement.Data"))
             );
         }
 
