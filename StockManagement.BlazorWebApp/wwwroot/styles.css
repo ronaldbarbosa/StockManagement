@@ -416,6 +416,22 @@ h5 {
 	transition: all 0.3s ease;
 }
 
+/* Custom Styles - Ronald */
+:root {
+	--primary: #1572e8;
+	--secondary: #6861ce;
+	--info: #48abf7;
+	--success: #31ce36;
+	--warning: #ffad46;
+	--danger: #f25961;
+}
+
+.link-text-secondary {
+	color: var(--secondary) !important;
+}
+	.link-text-secondary:hover {
+		color: #6a0cf8 !important;
+	}
 
 @media only screen {
 	.demo-list [class*="column"]+[class*="column"]:last-child {

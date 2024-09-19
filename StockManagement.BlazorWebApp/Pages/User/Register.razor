@@ -8,9 +8,10 @@
 <EditForm Model="@InputModel" OnValidSubmit="OnValidSubmitAsync" class="w-100 d-flex justify-content-center">
     <DataAnnotationsValidator />
 
-    <div class="card" style="width: 600px;">
-        <div class="card-header border-0">
-            <h3 class="card-title text-center">Cadastro</h3>
+    <div class="card" style="width: 500px;">
+        <div class="card-header bg-dark rounded-top-3 d-flex flex-column align-items-center border-0">
+            <img src="/img/logo-icon.png" alt="Logo SM Admin" height="100" />
+            <h3 class="card-title text-center text-white">Cadastro</h3>
         </div>
         <div class="card-body">
             <TextInputComponent Id="email" Label="@nameof(InputModel.Email)" Type="@InputTypes.email" Value="@InputModel.Email"
@@ -20,9 +21,9 @@
             <TextInputComponent Id="passwordConfirm" Label="@nameof(InputModel.PasswordConfirm)" Type="@InputTypes.password" Value="@InputModel.PasswordConfirm"
                                 ValueChanged="@(v => InputModel.PasswordConfirm = v)" ValueExpression="() => InputModel.PasswordConfirm" />
 
-            <div class="form-group d-flex justify-content-between">
-                <ButtonComponent ButtonType="@ButtonTypes.submit" ButtonClass="btn-primary" IconClass="fa-user-plus" ButtonText="Cadastrar" IsLoading="@Loading" />
-                <ButtonComponent ButtonType="@ButtonTypes.button" ButtonClass="btn-black" IconClass="fa-reply" ButtonText="Voltar" IsLoading="@false" OnClickCallback="RedirectToLogin" />
+            <div class="form-group d-flex flex-column">
+                <ButtonComponent ButtonType="@ButtonTypes.submit" ButtonClass="btn-secondary w-100 mb-2" IconClass="fa-user-plus" ButtonText="Cadastrar" IsLoading="@Loading" />
+                <ButtonComponent ButtonType="@ButtonTypes.button" ButtonClass="btn-black w-100 mb-2" IconClass="fa-reply" ButtonText="Voltar" IsLoading="@false" OnClickCallback="RedirectToLogin" />
             </div>
         </div>
 

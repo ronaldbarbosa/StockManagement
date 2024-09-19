@@ -8,20 +8,27 @@
 <EditForm Model="@InputModel" OnValidSubmit="OnValidSubmitAsync" class="w-100 d-flex justify-content-center">
     <DataAnnotationsValidator />
 
-    <div class="card" style="width:500px">
-        <div class="card-header border-0">
-            <h3 class="card-title text-center">Acesso</h3>
+    <div class="card" style="width: 500px">
+        <div class="card-header bg-dark rounded-top-3 d-flex flex-column align-items-center border-0">
+            <img src="/img/logo-icon.png" alt="Logo SM Admin" height="100" />
+            <h3 class="card-title text-center text-white">Acesso</h3>
         </div>
         <div class="card-body">
             <TextInputComponent Id="email" Label="@nameof(InputModel.Email)" Type="@InputTypes.email" Value="@InputModel.Email" 
                 ValueChanged="@(v => InputModel.Email = v)" ValueExpression="() => InputModel.Email" />
             <TextInputComponent Id="password" Label="@nameof(InputModel.Password)" Type="@InputTypes.password" Value="@InputModel.Password" 
                 ValueChanged="@(v => InputModel.Password = v)" ValueExpression="() => InputModel.Password" />
+            
+            <div class="form-group">
+                <div class="mb-4">
+                    <NavLink href="/Cadastro" class="link-text-secondary">Esqueceu a senha?</NavLink>
+                </div>
 
-            <div class="form-group d-flex justify-content-between">
-                <ButtonComponent ButtonType="@ButtonTypes.submit" ButtonClass="btn-primary" IconClass="fa-sign-in-alt" ButtonText="Login" IsLoading="@Loading" />
-                <ButtonComponent ButtonType="@ButtonTypes.button" ButtonClass="btn-secondary" IconClass="fa-user" ButtonText="Cadastre-se" IsLoading="@false" 
-                    OnClickCallback="RedirectToRegister" />
+                <ButtonComponent ButtonType="@ButtonTypes.submit" ButtonClass="btn-secondary w-100" IconClass="fa-sign-in-alt" ButtonText="Login" IsLoading="@Loading" />
+
+                <div class="my-4 text-center">
+                    <span>Não possui uma conta? <NavLink href="/Cadastro" class="link-text-secondary">Cadastre-se aqui.</NavLink></span>
+                </div>
             </div>            
         </div>
         
