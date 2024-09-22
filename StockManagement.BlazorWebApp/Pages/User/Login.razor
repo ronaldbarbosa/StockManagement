@@ -2,8 +2,12 @@
 @attribute [AllowAnonymous]
 @layout PublicLayout
 @inherits LoginPage
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<Resource> Localizer
 
-<PageTitle>SM - Acesso</PageTitle>
+<PageTitle>SM - @Localizer["LoginAccess"]</PageTitle>
+
+<h1></h1>
 
 <EditForm Model="@InputModel" OnValidSubmit="OnValidSubmitAsync" class="w-100 d-flex justify-content-center">
     <DataAnnotationsValidator />
@@ -11,7 +15,7 @@
     <div class="card" style="width: 500px">
         <div class="card-header bg-dark rounded-top-3 d-flex flex-column align-items-center border-0">
             <img src="/img/logo-icon.png" alt="Logo SM Admin" height="100" />
-            <h3 class="card-title text-center text-white">Acesso</h3>
+            <h3 class="card-title text-center text-white">@Localizer["LoginAccess"]</h3>
         </div>
         <div class="card-body">
             <TextInputComponent Id="email" Label="@nameof(InputModel.Email)" Type="@InputTypes.email" Value="@InputModel.Email" 
