@@ -52,9 +52,10 @@ namespace StockManagement.BlazorWebApp.Authentication
         {
             var claims = new List<Claim>
             {
-                new(ClaimTypes.Name, user.Name),
                 new(ClaimTypes.Email, user.Email)
             };
+
+            UserDTO? userInfo;
 
             claims.AddRange(
                 user.Claims.Where(x =>
@@ -68,6 +69,9 @@ namespace StockManagement.BlazorWebApp.Authentication
             try
             {
                 roles = await _client.GetFromJsonAsync<RoleClaimDTO[]>("roles");
+                userInfo = await _client.GetFromJsonAsync<UserDTO>("user/info");
+
+                if (userInfo is not null) claims.Add(new Claim(ClaimTypes.Name, userInfo.Name));
             }
             catch
             {

@@ -4,7 +4,6 @@ using StockManagement.BlazorWebApp;
 using Microsoft.AspNetCore.Components.Authorization;
 using StockManagement.BlazorWebApp.Services;
 using StockManagement.BlazorWebApp.Authentication;
-using System.Globalization;
 using StockManagement.BlazorWebApp.Extensions;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);

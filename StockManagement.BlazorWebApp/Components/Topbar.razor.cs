@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Authorization;
 using StockManagement.Application.DTOs;
 using StockManagement.BlazorWebApp.Authentication;
 using System.Security.Claims;

@@ -1,6 +1,4 @@
-﻿using StockManagement.Identity.Entities;
-
-namespace StockManagement.Application.DTOs
+﻿namespace StockManagement.Application.DTOs
 {
     public class UserDTO
     {
@@ -14,14 +12,14 @@ namespace StockManagement.Application.DTOs
         {            
         }
 
-        public static explicit operator UserDTO(User user)
-        {
-            return new UserDTO()
-            {
-                Email = user.Email ?? "",
-                Name = user.Name,
-                Username = user.UserName ?? ""
-            };
-        }
+        //public static explicit operator UserDTO(User user)
+        //{
+        //    return new UserDTO()
+        //    {
+        //        Email = user.Email ?? "",
+        //        Name = user.Name,
+        //        Username = user.UserName ?? ""
+        //    };
+        //}
     }
 }

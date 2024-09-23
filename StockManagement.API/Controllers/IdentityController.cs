@@ -54,7 +54,12 @@ namespace StockManagement.Api.Controllers
                 return Results.Unauthorized();
 
             var userInfo = await userManager.GetUserAsync(user);
-            var userInfoDTO = (UserDTO)userInfo!;
+            UserDTO userInfoDTO = new UserDTO() 
+            { 
+                Email = userInfo!.Email ?? "",
+                Name = userInfo.Name,
+                Username = userInfo.UserName ?? ""
+            };
             return await Task.FromResult<IResult>(TypedResults.Json(userInfoDTO));
         }
     }
