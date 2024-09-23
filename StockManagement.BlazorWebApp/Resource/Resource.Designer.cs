@@ -77,5 +77,50 @@ namespace StockManagement.BlazorWebApp.Resource {
                 return ResourceManager.GetString("LoginAccess", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Account Settings.
+        /// </summary>
+        public static string TopBarAccountSettings {
+            get {
+                return ResourceManager.GetString("TopBarAccountSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hi.
+        /// </summary>
+        public static string TopBarGreeting {
+            get {
+                return ResourceManager.GetString("TopBarGreeting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Logout.
+        /// </summary>
+        public static string TopBarLogout {
+            get {
+                return ResourceManager.GetString("TopBarLogout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to My Profile.
+        /// </summary>
+        public static string TopBarMyProfile {
+            get {
+                return ResourceManager.GetString("TopBarMyProfile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View Profile.
+        /// </summary>
+        public static string TopBarViewProfile {
+            get {
+                return ResourceManager.GetString("TopBarViewProfile", resourceCulture);
+            }
+        }
     }
 }

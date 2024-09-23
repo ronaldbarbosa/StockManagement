@@ -32,7 +32,6 @@ namespace StockManagement.BlazorWebApp.Authentication
 
             var id = new ClaimsIdentity(claims, nameof(CustomAuthenticationStateProvider));
             user = new ClaimsPrincipal(id);
-
             _isAuthenticated = true;
             return new AuthenticationState(user);
         }
@@ -52,10 +51,10 @@ namespace StockManagement.BlazorWebApp.Authentication
         private async Task<List<Claim>> GetClaims(UserDTO user)
         {
             var claims = new List<Claim>
-        {
-            new(ClaimTypes.Name, user.Email),
-            new(ClaimTypes.Email, user.Email)
-        };
+            {
+                new(ClaimTypes.Name, user.Name),
+                new(ClaimTypes.Email, user.Email)
+            };
 
             claims.AddRange(
                 user.Claims.Where(x =>
@@ -68,7 +67,7 @@ namespace StockManagement.BlazorWebApp.Authentication
             RoleClaimDTO[]? roles;
             try
             {
-                roles = await _client.GetFromJsonAsync<RoleClaimDTO[]>("v1/identity/roles");
+                roles = await _client.GetFromJsonAsync<RoleClaimDTO[]>("roles");
             }
             catch
             {

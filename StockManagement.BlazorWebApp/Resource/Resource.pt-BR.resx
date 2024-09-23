@@ -123,4 +123,19 @@
   <data name="LoginAccess" xml:space="preserve">
     <value>Acesso</value>
   </data>
+  <data name="TopBarGreeting" xml:space="preserve">
+    <value>Olá</value>
+  </data>
+  <data name="TopBarViewProfile" xml:space="preserve">
+    <value>Ver Perfil</value>
+  </data>
+  <data name="TopBarMyProfile" xml:space="preserve">
+    <value>Meu Perfil</value>
+  </data>
+  <data name="TopBarAccountSettings" xml:space="preserve">
+    <value>Configurações da Conta</value>
+  </data>
+  <data name="TopBarLogout" xml:space="preserve">
+    <value>Sair</value>
+  </data>
 </root>

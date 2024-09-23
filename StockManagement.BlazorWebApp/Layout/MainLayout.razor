@@ -2,10 +2,16 @@
 
 <AuthorizeView>
     <Authorized>
-        <div class="wrapper">
+        <div class="wrapper">            
             <Sidebar />
             <div class="main-panel">
-                @Body
+                <Topbar />
+                <div class="container">
+                    <div class="page-inner">
+                        @Body                    
+                    </div>                    
+                </div>  
+                <Footer />
             </div>
         </div>
     </Authorized>

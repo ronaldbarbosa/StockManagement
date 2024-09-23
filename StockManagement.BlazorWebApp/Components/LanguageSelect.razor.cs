@@ -4,7 +4,7 @@ using System.Globalization;
 
 namespace StockManagement.BlazorWebApp.Components
 {
-    public partial class LanguageSelectComponent : ComponentBase
+    public partial class LanguageSelect : ComponentBase
     {
         #region properties
         private CultureInfo _selectedLanguage = new CultureInfo("pt-br");

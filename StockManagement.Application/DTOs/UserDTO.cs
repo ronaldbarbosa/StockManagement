@@ -1,4 +1,6 @@
-﻿namespace StockManagement.Application.DTOs
+﻿using StockManagement.Identity.Entities;
+
+namespace StockManagement.Application.DTOs
 {
     public class UserDTO
     {
@@ -7,5 +9,19 @@
         public string Name { get; set; } = string.Empty;
 
         public Dictionary<string, string> Claims { get; set; } = [];
+
+        public UserDTO()
+        {            
+        }
+
+        public static explicit operator UserDTO(User user)
+        {
+            return new UserDTO()
+            {
+                Email = user.Email ?? "",
+                Name = user.Name,
+                Username = user.UserName ?? ""
+            };
+        }
     }
 }

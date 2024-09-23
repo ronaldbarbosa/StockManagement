@@ -1,0 +1,38 @@
+﻿@inject IStringLocalizer<Resource> Localizer
+
+<div class="main-header">
+    <div class="navbar navbar-header navbar-expand-lg d-flex justify-content-end">
+        <LanguageSelect />
+        <div class="d-flex topbar-user dropdown hidden-caret submenu"> 
+            <a class="dropdown-toggle profile-pic d-flex align-items-center" data-bs-toggle="dropdown" data-bs-display="static" href="#" aria-expanded="false">
+                <div class="avatar-sm">
+                    <img src="img/talha.jpg" alt="" class="avatar-img rounded-circle">
+                </div>
+                <span class="profile-username ms-2">
+                    <span class="op-7">@Localizer["TopBarGreeting"]</span> <span class="fw-bold">@User.Name</span>
+                </span>
+            </a>
+            <div class="dropdown-menu dropdown-user animated fadeIn" style="margin-left: -175px">
+                <div class="scroll-wrapper dropdown-user-scroll scrollbar-outer" style="position: relative;">
+                    <div class="dropdown-user-scroll scrollbar-outer scroll-content">
+                        <div>
+                            <div class="user-box">
+                                <div class="avatar-lg"><img src="img/arashmil.jpg" alt="image profile" class="avatar-img rounded"></div>
+                                <div class="u-text">
+                                    <h4>@User.Name</h4>
+                                    <p class="text-muted">@User.Email</p><a href="profile.html" class="btn btn-xs btn-secondary btn-sm">@Localizer["TopBarViewProfile"]</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="dropdown-divider"></div>
+                            <NavLink class="dropdown-item" href="#">@Localizer["TopBarMyProfile"]</NavLink>
+                            <NavLink class="dropdown-item" href="#">@Localizer["TopBarAccountSettings"]</NavLink>
+                            <NavLink class="dropdown-item" href="/Logout">@Localizer["TopBarLogout"]</NavLink>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
