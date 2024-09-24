@@ -22,6 +22,7 @@ namespace StockManagement.BlazorWebApp.Pages.User
         #region properties
         public CreateUserRequest InputModel { get; set; } = new();
         public bool Loading { get; set; } = false;
+        public List<string> Errors { get; set; } = [];
         #endregion
 
         #region overrides
@@ -33,19 +34,27 @@ namespace StockManagement.BlazorWebApp.Pages.User
         public async Task OnValidSubmitAsync()
         {
             Loading = true;
-            // TODO: show identity's validations on register page; 
-            
+            Errors = [];
+
             try
             {
                 var result = await AuthWebService.RegisterAsync(InputModel);
-                if (result.Contains("sucesso"))
+                if (result.IsSucceded())
                 {
                     await AuthStateProvider.GetAuthenticationStateAsync();
                     AuthStateProvider.NotifyAuthenticationStateChanged();
                     NavigationManager.NavigateTo("/");
                 }
                 else
-                    Console.WriteLine(result);
+                {
+                    if (result.Errors.Count != 0)
+                    {
+                        foreach (var errorList in result.Errors.Keys)
+                        {
+                            Errors.Add(errorList);
+                        }
+                    }
+                }
             }
             catch (Exception ex)
             {

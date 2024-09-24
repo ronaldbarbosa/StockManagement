@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace StockManagement.Application.DTOs.Response
 {
@@ -9,5 +10,13 @@ namespace StockManagement.Application.DTOs.Response
 
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public string? RefreshToken { get; set; }
+
+        [Display(Name = "Erros")]
+        public Dictionary<string, List<string>> Errors { get; set; } = new();
+
+        public bool IsSucceded()
+        {
+            return Errors.Count == 0;
+        }
     }
 }

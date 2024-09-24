@@ -7,8 +7,6 @@
 
 <PageTitle>SM - @Localizer["LoginAccess"]</PageTitle>
 
-<h1></h1>
-
 <EditForm Model="@InputModel" OnValidSubmit="OnValidSubmitAsync" class="w-100 d-flex justify-content-center">
     <DataAnnotationsValidator />
 
@@ -18,20 +16,25 @@
             <h3 class="card-title text-center text-white">@Localizer["LoginAccess"]</h3>
         </div>
         <div class="card-body">
-            <TextInputComponent Id="email" Label="@nameof(InputModel.Email)" Type="@InputTypes.email" Value="@InputModel.Email" 
+            @if (Errors.Count > 0)
+            {
+                <ErrorList Errors=Errors Area="Login" Title=@Localizer["LoginError"] />
+            }
+
+            <TextInputComponent Id="email" Label=@Localizer["LoginEmail"] Type="@InputTypes.email" Value="@InputModel.Email" 
                 ValueChanged="@(v => InputModel.Email = v)" ValueExpression="() => InputModel.Email" />
-            <TextInputComponent Id="password" Label="@nameof(InputModel.Password)" Type="@InputTypes.password" Value="@InputModel.Password" 
+            <TextInputComponent Id="password" Label=@Localizer["LoginPassword"] Type="@InputTypes.password" Value="@InputModel.Password" 
                 ValueChanged="@(v => InputModel.Password = v)" ValueExpression="() => InputModel.Password" />
             
             <div class="form-group">
                 <div class="mb-4">
-                    <NavLink href="/Cadastro" class="link-text-secondary">Esqueceu a senha?</NavLink>
+                    <NavLink href="/Cadastro" class="link-text-secondary">@Localizer["LoginForgetPassword"]</NavLink>
                 </div>
 
-                <ButtonComponent ButtonType="@ButtonTypes.submit" ButtonClass="btn-secondary w-100" IconClass="fa-sign-in-alt" ButtonText="Login" IsLoading="@Loading" />
+                <ButtonComponent ButtonType="@ButtonTypes.submit" ButtonClass="btn-secondary w-100" IconClass="fa-sign-in-alt" ButtonText=@Localizer["LoginEnter"] IsLoading="@(Loading && Errors.Count == 0)" />
 
                 <div class="my-4 text-center">
-                    <span>Não possui uma conta? <NavLink href="/Cadastro" class="link-text-secondary">Cadastre-se aqui.</NavLink></span>
+                    <span>@Localizer["LoginDontHaveAnAccount"] <NavLink href="/Cadastro" class="link-text-secondary">@Localizer["LoginRegisterHere"]</NavLink></span>
                 </div>
             </div>            
         </div>

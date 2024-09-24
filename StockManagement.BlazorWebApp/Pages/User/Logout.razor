@@ -2,13 +2,14 @@
 @layout PublicLayout
 @inherits LogoutPage
 @attribute [AllowAnonymous]
+@inject IStringLocalizer<Resource> Localizer
 
-<PageTitle>SM - Sair</PageTitle>
+<PageTitle>SM - @Localizer["Logout"]</PageTitle>
 
 <div class="d-flex align-items-center">
     <div class="alert alert-info" role="alert">
-        <h4>Sessão finalizada...</h4>
-        <ButtonComponent ButtonType="@ButtonTypes.button" ButtonClass="btn-primary" IconClass="fa-sign-in-alt" ButtonText="Ir para a tela de login" 
-            IsLoading="false" OnClickCallback="RedirectToLogin" />
+        <h4>@Localizer["LogoutSessionEnded"]</h4>
+        <ButtonComponent ButtonType="@ButtonTypes.button" ButtonClass="btn-primary" IconClass="fa-sign-in-alt" ButtonText=@Localizer["LogoutToLoginPage"]
+                         IsLoading="false" OnClickCallback="RedirectToLogin" />
     </div>    
 </div>

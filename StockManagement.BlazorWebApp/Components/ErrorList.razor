@@ -1,0 +1,17 @@
+﻿@inject IStringLocalizer<Resource> Localizer
+
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <div class="d-flex align-items-center">
+        <i class="fas fa-exclamation-circle text-danger fs-1"></i>
+        <span class="ms-2 fs-5 fw-bold">@Title</span>
+    </div>
+    <div class="mt-2">
+        @foreach (var error in Errors)
+        {
+            <span>@Localizer[$"{Area}{error}"]</span>
+            <br />
+        }
+    </div>
+    
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>

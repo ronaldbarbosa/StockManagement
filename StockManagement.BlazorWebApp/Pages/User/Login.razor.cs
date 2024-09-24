@@ -2,6 +2,7 @@
 using StockManagement.Application.DTOs.Request;
 using StockManagement.BlazorWebApp.Authentication;
 using StockManagement.BlazorWebApp.Services;
+using System.Net;
 
 namespace StockManagement.BlazorWebApp.Pages.User
 {
@@ -23,6 +24,7 @@ namespace StockManagement.BlazorWebApp.Pages.User
         #region properties
         public LoginRequest InputModel { get; set; } = new();
         public bool Loading { get; set; } = false;
+        public List<string> Errors { get; set; } = [];
         #endregion
 
         #region overrides
@@ -43,18 +45,32 @@ namespace StockManagement.BlazorWebApp.Pages.User
         public async Task OnValidSubmitAsync()
         {
             Loading = true;
+            Errors = [];
 
             try
             {
                 var result = await AuthWebService.LoginAsync(InputModel);
-                if (result.Contains("sucesso"))
+
+                if (result.IsSucceded() && result.StatusCode != HttpStatusCode.Unauthorized)
                 {
                     await AuthStateProvider.GetAuthenticationStateAsync();
                     AuthStateProvider.NotifyAuthenticationStateChanged();
                     NavigationManager.NavigateTo("/");
                 }
                 else
-                    Console.WriteLine(result);
+                {
+                    if (result.Errors.Count != 0)
+                    {
+                        foreach (var errorList in result.Errors.Keys)
+                        {
+                            Errors.Add(errorList);
+                        }
+                    }
+                    else if (result.StatusCode == HttpStatusCode.Unauthorized)
+                    {
+                        Errors.Add("Unauthorized");
+                    }
+                }                    
             }
             catch (Exception ex)
             {
