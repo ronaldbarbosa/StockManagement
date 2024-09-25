@@ -2,7 +2,6 @@
 using StockManagement.Application.Interfaces.Services;
 using StockManagement.Data;
 using StockManagement.Identity;
-using StockManagement.Identity.Services;
 using StockManagement.Domain.Interfaces.Repositories;
 using StockManagement.Data.Repositories;
 using StockManagement.Domain.Interfaces.Services;
@@ -36,7 +35,8 @@ namespace StockManagement.Api.Extensions
 
             // AppServices
             builder.Services.AddScoped<ICategoryAppService, CategoryAppService>();
-
+            builder.Services.AddScoped<IBlobStorageAppService, AzureBlobStorageAppService>();
+            
             //builder.Services.AddScoped<IIdentityAppService, IdentityService>();
         }
     }

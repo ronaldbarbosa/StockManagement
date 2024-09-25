@@ -1,8 +1,7 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Azure;
 using Microsoft.OpenApi.Models;
 using StockManagement.Api.Extensions;
-using StockManagement.Domain;
 using StockManagement.Identity.Entities;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -34,6 +33,13 @@ builder.Services.AddSwaggerGen(setup =>
         { jwtSecurityScheme, Array.Empty<string>() }
     });
 
+});
+
+var blobStorageConnection = builder.Configuration["ConnectionStrings:SMAdmin:BlobStorage"];
+
+builder.Services.AddAzureClients(azureBuilder =>
+{
+    azureBuilder.AddBlobServiceClient(blobStorageConnection);
 });
 
 builder.Services.AddCors(

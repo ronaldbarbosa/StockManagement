@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Azure.Storage.Blobs" Version="12.22.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\StockManagement.Core\StockManagement.Domain.csproj" />
     <ProjectReference Include="..\StockManagement.Data\StockManagement.Data.csproj" />
   </ItemGroup>
