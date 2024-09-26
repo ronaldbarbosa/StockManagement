@@ -13,7 +13,7 @@ namespace StockManagement.Application.Services
         public AzureBlobStorageAppService(IConfiguration configuration)
         {
             _connectionString = configuration.GetConnectionString("AzureBlobStorage") ?? "";
-            _containerName = "sm-admin-users";
+            _containerName = configuration.GetConnectionString("ContainerName") ?? "";
         }
 
         public async Task<string> UploadFileAsync(Stream fileStream, string fileName, string contentType)

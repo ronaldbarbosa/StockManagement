@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Components.Authorization;
 using StockManagement.BlazorWebApp.Services;
 using StockManagement.BlazorWebApp.Authentication;
 using StockManagement.BlazorWebApp.Extensions;
+using StockManagement.BlazorWebApp.Services.Interfaces;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
@@ -26,6 +27,7 @@ builder.Services.AddLocalization();
 var host = builder.Build();
 await host.SetDefaultCulture();
 
-builder.Services.AddTransient<AuthWebService>();
+builder.Services.AddTransient<IAuthWebService, AuthWebService>();
+builder.Services.AddTransient<IBlobStorageWebService, AzureBlobStorageWebService>();
 
 await builder.Build().RunAsync();

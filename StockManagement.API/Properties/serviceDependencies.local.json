@@ -1,0 +1,14 @@
+{
+  "dependencies": {
+    "secrets2": {
+      "ignored": "true",
+      "type": "secrets.keyVault"
+    },
+    "secrets1": {
+      "secretStore": null,
+      "resourceId": null,
+      "type": "secrets.user",
+      "connectionId": null
+    }
+  }
+}

@@ -1,0 +1,10 @@
+﻿@page "/Perfil"
+
+<h3>Upload de Imagem</h3>
+
+<InputFile class="" OnChange="HandleFile" />
+
+<ButtonComponent ButtonClass="btn-primary" ButtonText="Upload" ButtonType="ButtonTypes.button" IsLoading=@_loading OnClickCallback="@UploadFile" />
+
+<span class="fs-4">@_uploadResult</span>
+
