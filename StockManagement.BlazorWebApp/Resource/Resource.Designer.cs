@@ -70,6 +70,15 @@ namespace StockManagement.BlazorWebApp.Resource {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        public static string CommonSave {
+            get {
+                return ResourceManager.GetString("CommonSave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Hello World.
         /// </summary>
         public static string HelloWorld {

@@ -57,8 +57,13 @@ namespace StockManagement.Api.Controllers
             UserDTO userInfoDTO = new UserDTO() 
             { 
                 Email = userInfo!.Email ?? "",
+                EmailConfirmed = userInfo.EmailConfirmed,
                 Name = userInfo.Name,
-                Username = userInfo.UserName ?? ""
+                Username = userInfo.UserName ?? "",
+                PhoneNumber = userInfo.PhoneNumber ?? "",
+                PhoneNumberConfirmed = userInfo.PhoneNumberConfirmed,
+                TwoFactorEnabled = userInfo.TwoFactorEnabled,
+                AvatarUrl = userInfo.AvatarUrl
             };
             return await Task.FromResult<IResult>(TypedResults.Json(userInfoDTO));
         }

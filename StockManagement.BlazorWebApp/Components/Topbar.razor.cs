@@ -8,7 +8,7 @@ namespace StockManagement.BlazorWebApp.Components
     public partial class Topbar : ComponentBase
     {
         #region properties
-        protected UserDTO User { get; set; } = new();
+        public UserDTO User { get; set; } = new();
         #endregion
 
         #region Services

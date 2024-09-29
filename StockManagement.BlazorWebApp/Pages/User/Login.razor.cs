@@ -6,7 +6,7 @@ using System.Net;
 
 namespace StockManagement.BlazorWebApp.Pages.User
 {
-    public partial class LoginPage : ComponentBase
+    public partial class Login : ComponentBase
     {
         #region services
 
@@ -78,7 +78,7 @@ namespace StockManagement.BlazorWebApp.Pages.User
             }
         }
 
-        protected void RedirectToRegister()
+        public void RedirectToRegister()
         {
             NavigationManager.NavigateTo("/Cadastro");
         }

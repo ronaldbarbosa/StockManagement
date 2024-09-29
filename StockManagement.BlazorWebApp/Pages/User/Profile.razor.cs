@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
+using StockManagement.Application.DTOs;
 using StockManagement.BlazorWebApp.Services.Interfaces;
 
 namespace StockManagement.BlazorWebApp.Pages.User
@@ -9,12 +10,31 @@ namespace StockManagement.BlazorWebApp.Pages.User
         #region services
         [Inject]
         public IBlobStorageWebService BlobStorageWebService { get; set; } = null!;
+
+        [Inject]
+        public IAuthWebService AuthWebService { get; set; } = null!;
         #endregion
 
         #region properties
-        private IBrowserFile _selectedFile;
-        private string _uploadResult;
-        private bool _loading = false;
+        public IBrowserFile _selectedFile { get; set; }
+        public string _uploadResult { get; set; } =string.Empty;
+
+        public bool _loading { get; set; } = false;
+
+        public UserDTO? User { get; set; }
+        #endregion
+
+        #region overrides
+
+        protected override async Task OnInitializedAsync()
+        {
+            var result = await AuthWebService.GetUserInfoAsync();
+            if (result is not null)
+            {
+                User = result.User;
+            }
+        }
+
         #endregion
 
         #region methods

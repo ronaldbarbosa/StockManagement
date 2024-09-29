@@ -1,6 +1,41 @@
-﻿@page "/Perfil"
+﻿@page "/perfil"
+@inject IStringLocalizer<UserResource> UserLocalizer
+@inject IStringLocalizer<Resource> CommonLocalizer
 
-<h3>Upload de Imagem</h3>
+<PageTitle>SM - @UserLocalizer["Profile"]</PageTitle>
+
+<h3>@UserLocalizer["Profile"]</h3>
+
+<div class="card card-with-nav mt-4">
+    <div class="card-header">
+        <div class="row row-nav-line">
+            <ul class="nav nav-tabs nav-line nav-color-secondary w-100 ps-4" role="tablist">
+                <li class="nav-item cursor-pointer" role="presentation">
+                    <a class="nav-link active show" data-bs-toggle="tab" data-bs-target="#personalInfo" role="tab" aria-controls="personalInfo" aria-selected="true">@UserLocalizer["ProfilePersonalInfo"]</a>
+                </li>
+                <li class="nav-item cursor-pointer" role="presentation">
+                    <a class="nav-link" data-bs-toggle="tab" data-bs-target="#accessInfo" role="tab" aria-controls="accessInfo" aria-selected="false">@UserLocalizer["ProfileAccessInfo"]</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="tab-content">
+            <div class="tab-pane fade show active" id="personalInfo" role="tabpanel" tabindex="0">
+                Personal<br />
+            </div>
+            <div class="tab-pane fade" id="accessInfo" role="tabpanel" tabindex="0">
+                <span>@User?.Email</span>
+                <span>@User?.EmailConfirmed</span>
+                <span>@User?.TwoFactorEnabled</span>
+            </div>
+        </div>
+        <div class="text-end">
+            <ButtonComponent ButtonType="ButtonTypes.submit" ButtonClass="btn-success" IconClass="fa-save" ButtonText=@CommonLocalizer["CommonSave"] />
+            <ButtonComponent ButtonType="ButtonTypes.button" ButtonClass="btn-black" IconClass="fa-reply" ButtonText=@CommonLocalizer["CommonReturn"] />
+        </div>
+    </div>
+</div>
 
 <InputFile class="" OnChange="HandleFile" />
 

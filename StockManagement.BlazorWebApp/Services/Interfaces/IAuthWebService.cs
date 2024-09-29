@@ -1,4 +1,5 @@
-﻿using StockManagement.Application.DTOs.Request;
+﻿using StockManagement.Application.DTOs;
+using StockManagement.Application.DTOs.Request;
 using StockManagement.Application.DTOs.Response;
 
 namespace StockManagement.BlazorWebApp.Services.Interfaces
@@ -8,5 +9,6 @@ namespace StockManagement.BlazorWebApp.Services.Interfaces
         Task<LoginResponse> LoginAsync(LoginRequest request);
         Task LogoutAsync();
         Task<CreateUserResponse> RegisterAsync(CreateUserRequest request);
+        Task<GetUserResponse> GetUserInfoAsync();
     }
 }

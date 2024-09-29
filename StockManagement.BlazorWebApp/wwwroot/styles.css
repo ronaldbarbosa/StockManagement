@@ -433,6 +433,11 @@ h5 {
 		color: #6a0cf8 !important;
 	}
 
+/* Custom styles */
+.cursor-pointer {
+	cursor: pointer;
+}
+
 @media only screen {
 	.demo-list [class*="column"]+[class*="column"]:last-child {
 		float: left;

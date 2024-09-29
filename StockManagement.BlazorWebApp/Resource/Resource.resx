@@ -207,4 +207,7 @@
   <data name="LoginUnauthorized" xml:space="preserve">
     <value>Unauthorized: check your email/password.</value>
   </data>
+  <data name="CommonSave" xml:space="preserve">
+    <value>Save</value>
+  </data>
 </root>

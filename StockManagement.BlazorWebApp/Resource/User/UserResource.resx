@@ -117,97 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="HelloWorld" xml:space="preserve">
-    <value>Olá Mundo</value>
+  <data name="Profile" xml:space="preserve">
+    <value>Profile</value>
   </data>
-  <data name="LoginAccess" xml:space="preserve">
-    <value>Acesso</value>
+  <data name="ProfilePersonalInfo" xml:space="preserve">
+    <value>Personal Info</value>
   </data>
-  <data name="TopBarGreeting" xml:space="preserve">
-    <value>Olá</value>
-  </data>
-  <data name="TopBarViewProfile" xml:space="preserve">
-    <value>Ver Perfil</value>
-  </data>
-  <data name="TopBarMyProfile" xml:space="preserve">
-    <value>Meu Perfil</value>
-  </data>
-  <data name="TopBarAccountSettings" xml:space="preserve">
-    <value>Configurações da Conta</value>
-  </data>
-  <data name="TopBarLogout" xml:space="preserve">
-    <value>Sair</value>
-  </data>
-  <data name="LoginEmail" xml:space="preserve">
-    <value>Email</value>
-  </data>
-  <data name="LoginPassword" xml:space="preserve">
-    <value>Senha</value>
-  </data>
-  <data name="LoginConfirmPassword" xml:space="preserve">
-    <value>Confirmar Senha</value>
-  </data>
-  <data name="LoginForgetPassword" xml:space="preserve">
-    <value>Esqueceu a senha?</value>
-  </data>
-  <data name="LoginDontHaveAnAccount" xml:space="preserve">
-    <value>Não tem uma conta?</value>
-  </data>
-  <data name="LoginRegisterHere" xml:space="preserve">
-    <value>Cadastre-se aqui.</value>
-  </data>
-  <data name="LoginEnter" xml:space="preserve">
-    <value>Entre</value>
-  </data>
-  <data name="LoginSignUp" xml:space="preserve">
-    <value>Cadastrar</value>
-  </data>
-  <data name="CommonReturn" xml:space="preserve">
-    <value>Voltar</value>
-  </data>
-  <data name="Logout" xml:space="preserve">
-    <value>Sair</value>
-  </data>
-  <data name="LogoutToLoginPage" xml:space="preserve">
-    <value>Ir para tela de login</value>
-  </data>
-  <data name="LogoutSessionEnded" xml:space="preserve">
-    <value>Sessão finalizada...</value>
-  </data>
-  <data name="RegisterPasswordTooShort" xml:space="preserve">
-    <value>Senhas devem possuir pelo menos 6 caracteres</value>
-  </data>
-  <data name="RegisterPasswordRequiresNonAlphanumeric" xml:space="preserve">
-    <value>Senhas devem conter pelo menos um caractere não alfanumérico.</value>
-  </data>
-  <data name="RegisterPasswordRequiresDigit" xml:space="preserve">
-    <value>Senhas devem conter pelo menos um dígito ('0'-'9').</value>
-  </data>
-  <data name="RegisterPasswordRequiresLower" xml:space="preserve">
-    <value>Senhas devem conter pelo menos um caractere minúsculo ('a'-'z').</value>
-  </data>
-  <data name="RegisterPasswordRequiresUpper" xml:space="preserve">
-    <value>Senhas devem conter pelo menos um caractere maiúsculo ('A'-'Z').</value>
-  </data>
-  <data name="RegisterPasswordRequiresUniqueChars" xml:space="preserve">
-    <value>Senhas devem usar pelo menos 1 caractere diferente.</value>
-  </data>
-  <data name="RegisterInvalidEmail" xml:space="preserve">
-    <value>Email inválido.</value>
-  </data>
-  <data name="RegisterDuplicateEmail" xml:space="preserve">
-    <value>O e-mail já foi cadastrado.</value>
-  </data>
-  <data name="RegisterError" xml:space="preserve">
-    <value>Erro ao cadastrar</value>
-  </data>
-  <data name="LoginError" xml:space="preserve">
-    <value>Erro ao entrar</value>
-  </data>
-  <data name="LoginUnauthorized" xml:space="preserve">
-    <value>Não autorizado: revise seu email/senha.</value>
-  </data>
-  <data name="CommonSave" xml:space="preserve">
-    <value>Salvar</value>
+  <data name="ProfileAccessInfo" xml:space="preserve">
+    <value>Access Info</value>
   </data>
 </root>

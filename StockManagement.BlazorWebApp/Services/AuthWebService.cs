@@ -1,4 +1,5 @@
-﻿using StockManagement.Application.DTOs.Request;
+﻿using StockManagement.Application.DTOs;
+using StockManagement.Application.DTOs.Request;
 using StockManagement.Application.DTOs.Response;
 using StockManagement.BlazorWebApp.Services.Interfaces;
 using System.Net.Http.Json;
@@ -9,6 +10,19 @@ namespace StockManagement.BlazorWebApp.Services
     public class AuthWebService(IHttpClientFactory clientFactory) : IAuthWebService
     {
         private readonly HttpClient _client = clientFactory.CreateClient("client");
+
+        public async Task<GetUserResponse> GetUserInfoAsync()
+        {
+            var result = await _client.GetAsync("user/info");
+            var response = new GetUserResponse();
+
+            if (result.IsSuccessStatusCode)
+            {
+                response.User = await result.Content.ReadFromJsonAsync<UserDTO>();
+            }
+
+            return response;
+        }
 
         public async Task<LoginResponse> LoginAsync(LoginRequest request)
         {

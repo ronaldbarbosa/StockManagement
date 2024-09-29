@@ -4,7 +4,7 @@ using StockManagement.BlazorWebApp.Services;
 
 namespace StockManagement.BlazorWebApp.Pages.User
 {
-    public partial class LogoutPage : ComponentBase
+    public partial class Logout : ComponentBase
     {
         #region Services
 

@@ -7,7 +7,7 @@ namespace StockManagement.BlazorWebApp.Components
     public partial class LanguageSelect : ComponentBase
     {
         #region properties
-        private CultureInfo _selectedLanguage = new CultureInfo("pt-br");
+        public CultureInfo SelectedLanguage { get; set; } = new CultureInfo("pt-br");
         #endregion
 
         #region overrides
@@ -16,26 +16,26 @@ namespace StockManagement.BlazorWebApp.Components
             var js = (IJSInProcessRuntime)JSRuntime;
             var storedCulture = await js.InvokeAsync<string>("applicationCulture.get");
 
-            if (!string.IsNullOrEmpty(storedCulture)) _selectedLanguage = new CultureInfo(storedCulture);
+            if (!string.IsNullOrEmpty(storedCulture)) SelectedLanguage = new CultureInfo(storedCulture);
         }
         #endregion
 
         #region methods
-        protected void SetCulture(string language)
+        public void SetCulture(string language)
         {            
-            _selectedLanguage = new CultureInfo(language ?? "pt-br");
+            SelectedLanguage = new CultureInfo(language ?? "pt-br");
 
-            if (CultureInfo.CurrentCulture != _selectedLanguage)
+            if (CultureInfo.CurrentCulture != SelectedLanguage)
             {
                 var js = (IJSInProcessRuntime)JSRuntime;
-                js.InvokeVoid("applicationCulture.set", _selectedLanguage.Name);
+                js.InvokeVoid("applicationCulture.set", SelectedLanguage.Name);
                 NavigationManager.NavigateTo(NavigationManager.Uri, forceLoad: true);
             }
         }
 
-        protected bool IsChecked(string language)
+        public bool IsChecked(string language)
         {            
-            return _selectedLanguage.Name == language;
+            return SelectedLanguage.Name == language;
         }
         #endregion
     }
