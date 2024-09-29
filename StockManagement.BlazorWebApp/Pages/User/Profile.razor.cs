@@ -16,10 +16,10 @@ namespace StockManagement.BlazorWebApp.Pages.User
         #endregion
 
         #region properties
-        public IBrowserFile _selectedFile { get; set; }
-        public string _uploadResult { get; set; } =string.Empty;
+        public IBrowserFile? SelectedFile { get; set; }
+        public string UploadResult { get; set; } =string.Empty;
 
-        public bool _loading { get; set; } = false;
+        public bool Loading { get; set; } = false;
 
         public UserDTO? User { get; set; }
         #endregion
@@ -41,36 +41,36 @@ namespace StockManagement.BlazorWebApp.Pages.User
 
         private void HandleFile(InputFileChangeEventArgs e)
         {
-            _selectedFile = e.File;
+            SelectedFile = e.File;
         }
 
         private async Task UploadFile()
         {
-            _loading = true;
+            Loading = true;
 
-            if (_selectedFile is null)
+            if (SelectedFile is null)
             {
-                _loading = false;
+                Loading = false;
                 return;
             }
 
             var content = new MultipartFormDataContent();
-            var fileContent = new StreamContent(_selectedFile.OpenReadStream(maxAllowedSize: 1024 * 1024 * 4));
+            var fileContent = new StreamContent(SelectedFile.OpenReadStream(maxAllowedSize: 1024 * 1024 * 4));
 
-            content.Add(fileContent, "file", _selectedFile.Name);
+            content.Add(fileContent, "file", SelectedFile.Name);
 
             var response = await BlobStorageWebService.UploadImageAsync(content);
 
             if (response.IsSuccessStatusCode)
             {
-                _uploadResult = "Sucesso";
+                UploadResult = "Sucesso";
             }
             else
             {
-                _uploadResult = "Erro" + response.ReasonPhrase;
+                UploadResult = "Erro" + response.ReasonPhrase;
             }
 
-            _loading = false;
+            Loading = false;
         }
         #endregion
     }
