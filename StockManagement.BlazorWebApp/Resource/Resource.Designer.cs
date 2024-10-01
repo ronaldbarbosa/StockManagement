@@ -338,5 +338,14 @@ namespace StockManagement.BlazorWebApp.Resource {
                 return ResourceManager.GetString("TopBarViewProfile", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error updating user information.
+        /// </summary>
+        public static string UpdateUserError {
+            get {
+                return ResourceManager.GetString("UpdateUserError", resourceCulture);
+            }
+        }
     }
 }

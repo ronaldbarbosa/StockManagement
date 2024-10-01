@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 using StockManagement.BlazorWebApp.Authentication;
-using StockManagement.BlazorWebApp.Services;
+using StockManagement.BlazorWebApp.Services.Interfaces;
 
 namespace StockManagement.BlazorWebApp.Pages.User
 {
@@ -15,7 +15,7 @@ namespace StockManagement.BlazorWebApp.Pages.User
         public ICustomAuthenticationStateProvider AuthStateProvider { get; set; } = null!;
 
         [Inject]
-        public AuthWebService AuthWebService { get; set; } = null!;
+        public IAuthWebService AuthWebService { get; set; } = null!;
 
         #endregion
 

@@ -126,4 +126,13 @@
   <data name="ProfileAccessInfo" xml:space="preserve">
     <value>Access Info</value>
   </data>
+  <data name="UserName" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="UserPhoneNumber" xml:space="preserve">
+    <value>Phone Number</value>
+  </data>
+  <data name="UserPhoneNumberConfirmed" xml:space="preserve">
+    <value>Phone Number Confirmed?</value>
+  </data>
 </root>

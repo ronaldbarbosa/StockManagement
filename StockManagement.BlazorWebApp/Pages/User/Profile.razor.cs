@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using StockManagement.Application.DTOs;
+using StockManagement.BlazorWebApp.Authentication;
 using StockManagement.BlazorWebApp.Services.Interfaces;
 
 namespace StockManagement.BlazorWebApp.Pages.User
@@ -13,6 +14,12 @@ namespace StockManagement.BlazorWebApp.Pages.User
 
         [Inject]
         public IAuthWebService AuthWebService { get; set; } = null!;
+
+        [Inject]
+        public NavigationManager NavigationManager { get; set; } = null!;
+
+        [Inject]
+        public ICustomAuthenticationStateProvider AuthStateProvider { get; set; } = null!;
         #endregion
 
         #region properties
@@ -21,7 +28,9 @@ namespace StockManagement.BlazorWebApp.Pages.User
 
         public bool Loading { get; set; } = false;
 
-        public UserDTO? User { get; set; }
+        public UserDTO User { get; set; } = new UserDTO();
+
+        public List<string> Errors { get; set; } = [];
         #endregion
 
         #region overrides
@@ -31,7 +40,7 @@ namespace StockManagement.BlazorWebApp.Pages.User
             var result = await AuthWebService.GetUserInfoAsync();
             if (result is not null)
             {
-                User = result.User;
+                User = result.User ?? new UserDTO();
             }
         }
 
@@ -39,12 +48,12 @@ namespace StockManagement.BlazorWebApp.Pages.User
 
         #region methods
 
-        private void HandleFile(InputFileChangeEventArgs e)
+        public void HandleFile(InputFileChangeEventArgs e)
         {
             SelectedFile = e.File;
         }
 
-        private async Task UploadFile()
+        public async Task UploadFile()
         {
             Loading = true;
 
@@ -71,6 +80,45 @@ namespace StockManagement.BlazorWebApp.Pages.User
             }
 
             Loading = false;
+        }
+
+        public async Task OnValidSubmitAsync()
+        {
+            Loading = true;
+            Errors = [];
+
+            Console.WriteLine("aqui");
+
+            try
+            {
+                var result = await AuthWebService.UpdateUserInfoAsync(User);
+
+                if (result.IsSucceded())
+                {
+
+                }
+                else
+                {
+                    if (result.Errors.Count != 0)
+                    {
+                        foreach (var errorList in result.Errors.Keys)
+                        {
+                            Errors.Add(errorList);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            Loading = false;
+        }
+
+        protected void RedirectToLogin()
+        {
+            NavigationManager.NavigateTo("/Login");
         }
         #endregion
     }

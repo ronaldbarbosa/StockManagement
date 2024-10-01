@@ -1,0 +1,5 @@
+﻿<div class="form-check">    
+    <InputCheckbox id=@Id class="form-check-input" type="checkbox" @bind-Value="Value" @onchange="HandleChange" />
+    <label class="form-check-label" for=@Id>@Label</label>
+    <ValidationMessage For=@ValueExpression />
+</div>

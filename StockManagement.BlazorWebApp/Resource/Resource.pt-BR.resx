@@ -210,4 +210,7 @@
   <data name="CommonSave" xml:space="preserve">
     <value>Salvar</value>
   </data>
+  <data name="UpdateUserError" xml:space="preserve">
+    <value>Erro ao atualizar as informções do usuário</value>
+  </data>
 </root>

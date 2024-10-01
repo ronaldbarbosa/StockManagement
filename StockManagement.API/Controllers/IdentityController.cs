@@ -67,5 +67,27 @@ namespace StockManagement.Api.Controllers
             };
             return await Task.FromResult<IResult>(TypedResults.Json(userInfoDTO));
         }
+
+        [HttpPost]
+        [Route("/user/info")]
+        public async Task<IResult> UpdateUserInfo(UserDTO userDTO)
+        {
+            var user = HttpContext.User;
+            var userInfo = await userManager.GetUserAsync(user);
+
+            if (userInfo is not null)
+            {
+                userInfo.UserName = userDTO.Username;
+                userInfo.Email = userDTO.Email;
+                userInfo.Name = userDTO.Name;
+                userInfo.PhoneNumber = userDTO.PhoneNumber;
+                userInfo.AvatarUrl = userDTO.AvatarUrl;
+
+                var result = await userManager.UpdateAsync(userInfo);
+                if (result.Succeeded) return await Task.FromResult<IResult>(TypedResults.Json(userDTO));
+            }
+
+            return Results.Problem();
+        }
     }
 }

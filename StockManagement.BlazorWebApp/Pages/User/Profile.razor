@@ -20,20 +20,35 @@
         </div>
     </div>
     <div class="card-body">
-        <div class="tab-content">
-            <div class="tab-pane fade show active" id="personalInfo" role="tabpanel" tabindex="0">
-                Personal<br />
+        @if (Errors.Count > 0)
+        {
+            <ErrorList Errors=Errors Area="Register" Title=@UserLocalizer["UpdateUserError"] />
+        }
+        <EditForm Model=@User OnValidSubmit="OnValidSubmitAsync">
+            <DataAnnotationsValidator />            
+
+            <div class="tab-content">
+                <div class="tab-pane fade show active" id="personalInfo" role="tabpanel" tabindex="0">
+                    <TextInputComponent Id="Name" Label=@UserLocalizer["UserName"] Type=@InputTypes.text Value=@User!.Name
+                                        ValueChanged=@(v => User!.Name = v) ValueExpression="() => User!.Name" />
+                    <TextInputComponent Id="PhoneNumber" Label=@UserLocalizer["UserPhoneNumber"] Type=@InputTypes.text Value=@User!.PhoneNumber
+                        ValueChanged=@(v => User!.PhoneNumber = v) ValueExpression="() => User!.PhoneNumber" />
+                    <CheckInputComponent Id="PhoneNumberConfirmed" Label=@UserLocalizer["UserPhoneNumberConfirmed"] Value=@(User!.PhoneNumberConfirmed)
+                        ValueChanged=@(v => User!.PhoneNumberConfirmed = v) ValueExpression="() => User!.PhoneNumberConfirmed" />
+                </div>
+
+                <div class="tab-pane fade" id="accessInfo" role="tabpanel" tabindex="0">
+                    <span>@User?.Email</span>
+                    <span>@User?.EmailConfirmed</span>
+                    <span>@User?.TwoFactorEnabled</span>
+                </div>
             </div>
-            <div class="tab-pane fade" id="accessInfo" role="tabpanel" tabindex="0">
-                <span>@User?.Email</span>
-                <span>@User?.EmailConfirmed</span>
-                <span>@User?.TwoFactorEnabled</span>
+            <div class="text-end">
+                <ButtonComponent ButtonType="ButtonTypes.submit" ButtonClass="btn-success" IconClass="fa-save" ButtonText=@CommonLocalizer["CommonSave"] IsLoading="@(Loading && Errors.Count == 0)" />
+                <ButtonComponent ButtonType="ButtonTypes.button" ButtonClass="btn-black" IconClass="fa-reply" ButtonText=@CommonLocalizer["CommonReturn"] IsLoading="@false" OnClickCallback="RedirectToLogin" />
             </div>
-        </div>
-        <div class="text-end">
-            <ButtonComponent ButtonType="ButtonTypes.submit" ButtonClass="btn-success" IconClass="fa-save" ButtonText=@CommonLocalizer["CommonSave"] />
-            <ButtonComponent ButtonType="ButtonTypes.button" ButtonClass="btn-black" IconClass="fa-reply" ButtonText=@CommonLocalizer["CommonReturn"] />
-        </div>
+        </EditForm>
+        
     </div>
 </div>
 

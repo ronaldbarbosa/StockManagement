@@ -24,6 +24,19 @@ namespace StockManagement.BlazorWebApp.Services
             return response;
         }
 
+        public async Task<UpdateUserResponse> UpdateUserInfoAsync(UserDTO user)
+        {
+            var result = await _client.PostAsJsonAsync("user/info", user);
+            var response = new UpdateUserResponse();
+
+            if (result.IsSuccessStatusCode)
+            {
+                response.User = await result.Content.ReadFromJsonAsync<UserDTO>();
+            }
+
+            return response;
+        }
+
         public async Task<LoginResponse> LoginAsync(LoginRequest request)
         {
             var result = await _client.PostAsJsonAsync("login?useCookies=true", request);

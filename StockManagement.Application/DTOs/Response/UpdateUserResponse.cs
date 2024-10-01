@@ -2,8 +2,9 @@
 
 namespace StockManagement.Application.DTOs.Response
 {
-    public class CreateUserResponse : ResponseBase
+    public class UpdateUserResponse : ResponseBase
     {
+        public UserDTO? User { get; set; }
         [Display(Name = "Erros")]
         public Dictionary<string, List<string>> Errors { get; set; } = [];
 

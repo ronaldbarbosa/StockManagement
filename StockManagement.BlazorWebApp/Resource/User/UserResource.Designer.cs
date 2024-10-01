@@ -86,5 +86,32 @@ namespace StockManagement.BlazorWebApp.Resource.User {
                 return ResourceManager.GetString("ProfilePersonalInfo", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        public static string UserName {
+            get {
+                return ResourceManager.GetString("UserName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Phone Number.
+        /// </summary>
+        public static string UserPhoneNumber {
+            get {
+                return ResourceManager.GetString("UserPhoneNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Phone Number Confirmed?.
+        /// </summary>
+        public static string UserPhoneNumberConfirmed {
+            get {
+                return ResourceManager.GetString("UserPhoneNumberConfirmed", resourceCulture);
+            }
+        }
     }
 }
