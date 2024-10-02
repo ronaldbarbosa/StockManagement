@@ -1,5 +1,5 @@
 ﻿<div class="form-group">
     <label for="@Id">@Label</label>
-    <InputText type="@Type" id="@Id" class="form-control" @bind-Value="Value" @oninput="HandleInput" />
+    <InputText type="@Type" id="@Id" class="form-control" @bind-Value="Value" @oninput="HandleInput" disabled=@Disabled />
     <ValidationMessage For="@ValueExpression" />
 </div>

@@ -154,7 +154,7 @@
     <value>Não tem uma conta?</value>
   </data>
   <data name="LoginRegisterHere" xml:space="preserve">
-    <value>Cadastre-se aqui.</value>
+    <value>Cadastre-se aqui</value>
   </data>
   <data name="LoginEnter" xml:space="preserve">
     <value>Entre</value>
@@ -178,25 +178,25 @@
     <value>Senhas devem possuir pelo menos 6 caracteres</value>
   </data>
   <data name="RegisterPasswordRequiresNonAlphanumeric" xml:space="preserve">
-    <value>Senhas devem conter pelo menos um caractere não alfanumérico.</value>
+    <value>Senhas devem conter pelo menos um caractere não alfanumérico</value>
   </data>
   <data name="RegisterPasswordRequiresDigit" xml:space="preserve">
-    <value>Senhas devem conter pelo menos um dígito ('0'-'9').</value>
+    <value>Senhas devem conter pelo menos um dígito ('0'-'9')</value>
   </data>
   <data name="RegisterPasswordRequiresLower" xml:space="preserve">
-    <value>Senhas devem conter pelo menos um caractere minúsculo ('a'-'z').</value>
+    <value>Senhas devem conter pelo menos um caractere minúsculo ('a'-'z')</value>
   </data>
   <data name="RegisterPasswordRequiresUpper" xml:space="preserve">
-    <value>Senhas devem conter pelo menos um caractere maiúsculo ('A'-'Z').</value>
+    <value>Senhas devem conter pelo menos um caractere maiúsculo ('A'-'Z')</value>
   </data>
   <data name="RegisterPasswordRequiresUniqueChars" xml:space="preserve">
-    <value>Senhas devem usar pelo menos 1 caractere diferente.</value>
+    <value>Senhas devem usar pelo menos 1 caractere diferente</value>
   </data>
   <data name="RegisterInvalidEmail" xml:space="preserve">
-    <value>Email inválido.</value>
+    <value>Email inválido</value>
   </data>
   <data name="RegisterDuplicateEmail" xml:space="preserve">
-    <value>O e-mail já foi cadastrado.</value>
+    <value>O e-mail já foi cadastrado</value>
   </data>
   <data name="RegisterError" xml:space="preserve">
     <value>Erro ao cadastrar</value>
@@ -205,12 +205,12 @@
     <value>Erro ao entrar</value>
   </data>
   <data name="LoginUnauthorized" xml:space="preserve">
-    <value>Não autorizado: revise seu email/senha.</value>
+    <value>Não autorizado: revise seu email/senha</value>
   </data>
   <data name="CommonSave" xml:space="preserve">
     <value>Salvar</value>
   </data>
-  <data name="UpdateUserError" xml:space="preserve">
-    <value>Erro ao atualizar as informções do usuário</value>
+  <data name="CommonError" xml:space="preserve">
+    <value>Erro ao processar requisição. Entre em contato com o serviço de suporte.</value>
   </data>
 </root>

@@ -154,7 +154,7 @@
     <value>Don't have an account?</value>
   </data>
   <data name="LoginRegisterHere" xml:space="preserve">
-    <value>Register here.</value>
+    <value>Register here</value>
   </data>
   <data name="LoginEnter" xml:space="preserve">
     <value>Login</value>
@@ -175,28 +175,28 @@
     <value>Session ended...</value>
   </data>
   <data name="RegisterPasswordTooShort" xml:space="preserve">
-    <value>Passwords must be at least 6 characters.</value>
+    <value>Passwords must be at least 6 characters</value>
   </data>
   <data name="RegisterPasswordRequiresNonAlphanumeric" xml:space="preserve">
-    <value>Passwords must have at least one non alphanumeric character.</value>
+    <value>Passwords must have at least one non alphanumeric character</value>
   </data>
   <data name="RegisterPasswordRequiresDigit" xml:space="preserve">
-    <value>Passwords must have at least one digit ('0'-'9').</value>
+    <value>Passwords must have at least one digit ('0'-'9')</value>
   </data>
   <data name="RegisterPasswordRequiresLower" xml:space="preserve">
-    <value>Passwords must have at least one lowercase ('a'-'z').</value>
+    <value>Passwords must have at least one lowercase ('a'-'z')</value>
   </data>
   <data name="RegisterPasswordRequiresUpper" xml:space="preserve">
-    <value>Passwords must have at least one uppercase ('A'-'Z').</value>
+    <value>Passwords must have at least one uppercase ('A'-'Z')</value>
   </data>
   <data name="RegisterPasswordRequiresUniqueChars" xml:space="preserve">
-    <value>Passwords must use at least 1 different characters.</value>
+    <value>Passwords must use at least 1 different characters</value>
   </data>
   <data name="RegisterInvalidEmail" xml:space="preserve">
-    <value>Invalid email.</value>
+    <value>Invalid email</value>
   </data>
   <data name="RegisterDuplicateEmail" xml:space="preserve">
-    <value>Email is already taken.</value>
+    <value>Email is already taken</value>
   </data>
   <data name="RegisterError" xml:space="preserve">
     <value>Register Error</value>
@@ -205,12 +205,12 @@
     <value>Login Error</value>
   </data>
   <data name="LoginUnauthorized" xml:space="preserve">
-    <value>Unauthorized: check your email/password.</value>
+    <value>Unauthorized: check your email/password</value>
   </data>
   <data name="CommonSave" xml:space="preserve">
     <value>Save</value>
   </data>
-  <data name="UpdateUserError" xml:space="preserve">
-    <value>Error updating user information</value>
+  <data name="CommonError" xml:space="preserve">
+    <value>Error processing request. Please contact support</value>
   </data>
 </root>

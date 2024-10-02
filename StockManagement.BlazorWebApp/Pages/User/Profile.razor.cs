@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using StockManagement.Application.DTOs;
+using StockManagement.Application.DTOs.Response;
 using StockManagement.BlazorWebApp.Authentication;
 using StockManagement.BlazorWebApp.Services.Interfaces;
+using System.Net.Http.Json;
 
 namespace StockManagement.BlazorWebApp.Pages.User
 {
@@ -24,6 +26,7 @@ namespace StockManagement.BlazorWebApp.Pages.User
 
         #region properties
         public IBrowserFile? SelectedFile { get; set; }
+
         public string UploadResult { get; set; } =string.Empty;
 
         public bool Loading { get; set; } = false;
@@ -31,6 +34,8 @@ namespace StockManagement.BlazorWebApp.Pages.User
         public UserDTO User { get; set; } = new UserDTO();
 
         public List<string> Errors { get; set; } = [];
+
+        public bool HasAlertMessage { get; set; } = false;
         #endregion
 
         #region overrides
@@ -72,6 +77,9 @@ namespace StockManagement.BlazorWebApp.Pages.User
 
             if (response.IsSuccessStatusCode)
             {
+                var avatarUrl = await response.Content.ReadFromJsonAsync<ImageUploadResponse>();
+                User.AvatarUrl = avatarUrl!.Url;
+                await OnValidSubmitAsync();
                 UploadResult = "Sucesso";
             }
             else
@@ -86,8 +94,7 @@ namespace StockManagement.BlazorWebApp.Pages.User
         {
             Loading = true;
             Errors = [];
-
-            Console.WriteLine("aqui");
+            HasAlertMessage = false;
 
             try
             {
@@ -95,7 +102,7 @@ namespace StockManagement.BlazorWebApp.Pages.User
 
                 if (result.IsSucceded())
                 {
-
+                    HasAlertMessage = true;
                 }
                 else
                 {
@@ -110,13 +117,13 @@ namespace StockManagement.BlazorWebApp.Pages.User
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Errors.Add(CommonLocalizer["CommonError"]);
             }
 
             Loading = false;
         }
 
-        protected void RedirectToLogin()
+        public void RedirectToLogin()
         {
             NavigationManager.NavigateTo("/Login");
         }

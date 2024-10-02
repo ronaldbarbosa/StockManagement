@@ -15,6 +15,8 @@ namespace StockManagement.BlazorWebApp.Components.Form
         public string ButtonClass { get; set; } = string.Empty;
         [Parameter] 
         public bool IsLoading { get; set; } = false;
+        [Parameter]
+        public bool Disabled { get; set; } = false;
         [Parameter] 
         public EventCallback OnClickCallback { get; set; }
         #endregion

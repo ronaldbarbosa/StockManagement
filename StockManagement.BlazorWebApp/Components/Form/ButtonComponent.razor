@@ -1,4 +1,4 @@
-﻿<button @onclick="OnClick" class="btn @ButtonClass" disabled="@IsLoading">
+﻿<button @onclick="OnClick" class="btn @ButtonClass" disabled="@(IsLoading || Disabled)">
     @if (IsLoading)
     {
         <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>

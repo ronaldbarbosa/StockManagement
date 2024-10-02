@@ -135,4 +135,13 @@
   <data name="UserPhoneNumberConfirmed" xml:space="preserve">
     <value>Phone Number Confirmed?</value>
   </data>
+  <data name="UpdateUserError" xml:space="preserve">
+    <value>Error updating user information</value>
+  </data>
+  <data name="UpdateUserSuccess" xml:space="preserve">
+    <value>User updated successfully</value>
+  </data>
+  <data name="UpdateUserSuccessMessage" xml:space="preserve">
+    <value>Your information has been updated successfully</value>
+  </data>
 </root>

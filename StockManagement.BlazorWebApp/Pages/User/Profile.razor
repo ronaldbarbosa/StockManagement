@@ -24,17 +24,34 @@
         {
             <ErrorList Errors=Errors Area="Register" Title=@UserLocalizer["UpdateUserError"] />
         }
+
+        @if(HasAlertMessage)
+        {
+            <AlertMessage Type=@AlertTypes.success Title=@UserLocalizer["UpdateUserSuccess"] Message=@UserLocalizer["UpdateUserSuccessMessage"] />
+        }
+
         <EditForm Model=@User OnValidSubmit="OnValidSubmitAsync">
             <DataAnnotationsValidator />            
 
             <div class="tab-content">
                 <div class="tab-pane fade show active" id="personalInfo" role="tabpanel" tabindex="0">
-                    <TextInputComponent Id="Name" Label=@UserLocalizer["UserName"] Type=@InputTypes.text Value=@User!.Name
-                                        ValueChanged=@(v => User!.Name = v) ValueExpression="() => User!.Name" />
-                    <TextInputComponent Id="PhoneNumber" Label=@UserLocalizer["UserPhoneNumber"] Type=@InputTypes.text Value=@User!.PhoneNumber
-                        ValueChanged=@(v => User!.PhoneNumber = v) ValueExpression="() => User!.PhoneNumber" />
-                    <CheckInputComponent Id="PhoneNumberConfirmed" Label=@UserLocalizer["UserPhoneNumberConfirmed"] Value=@(User!.PhoneNumberConfirmed)
-                        ValueChanged=@(v => User!.PhoneNumberConfirmed = v) ValueExpression="() => User!.PhoneNumberConfirmed" />
+                    <div class="row row-cols-1 row-cols-lg-2">
+                        <div class="col col-lg-4">
+                            <InputFile class="" OnChange="HandleFile" />
+
+                            <ButtonComponent ButtonClass="btn-primary" ButtonText="Upload" ButtonType="ButtonTypes.button" IsLoading=@Loading OnClickCallback="@UploadFile" />
+
+                            <span class="fs-4">@UploadResult</span>
+                        </div>
+                        <div class="col col-lg-8">
+                            <TextInputComponent Id="Name" Label=@UserLocalizer["UserName"] Type=@InputTypes.text Value=@User!.Name
+                                ValueChanged=@(v => User!.Name = v) ValueExpression="() => User!.Name" />
+                            <TextInputComponent Id="PhoneNumber" Label=@UserLocalizer["UserPhoneNumber"] Type=@InputTypes.text Value=@User!.PhoneNumber
+                                ValueChanged=@(v => User!.PhoneNumber = v) ValueExpression="() => User!.PhoneNumber" />
+                            <CheckInputComponent Id="PhoneNumberConfirmed" Label=@UserLocalizer["UserPhoneNumberConfirmed"] Value=@(User!.PhoneNumberConfirmed)
+                                ValueChanged=@(v => User!.PhoneNumberConfirmed = v) ValueExpression="() => User!.PhoneNumberConfirmed" Disabled=true />
+                        </div>
+                    </div>                    
                 </div>
 
                 <div class="tab-pane fade" id="accessInfo" role="tabpanel" tabindex="0">
@@ -51,10 +68,3 @@
         
     </div>
 </div>
-
-<InputFile class="" OnChange="HandleFile" />
-
-<ButtonComponent ButtonClass="btn-primary" ButtonText="Upload" ButtonType="ButtonTypes.button" IsLoading=@Loading OnClickCallback="@UploadFile" />
-
-<span class="fs-4">@UploadResult</span>
-

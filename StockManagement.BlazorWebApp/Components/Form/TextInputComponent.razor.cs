@@ -14,6 +14,8 @@ namespace StockManagement.BlazorWebApp.Components.Form
         public string Id { get; set; } = string.Empty;
         [Parameter] 
         public string Value { get; set; } = string.Empty;
+        [Parameter]
+        public bool Disabled { get; set; } = false;
         [Parameter] 
         public EventCallback<string> ValueChanged { get; set; }
         [Parameter] 
