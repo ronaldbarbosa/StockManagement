@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using StockManagement.Application.DTOs;
 using StockManagement.BlazorWebApp.Authentication;
-using System.Security.Claims;
+using StockManagement.BlazorWebApp.Services.Interfaces;
 
 namespace StockManagement.BlazorWebApp.Components
 {
@@ -17,6 +17,9 @@ namespace StockManagement.BlazorWebApp.Components
 
         [Inject]
         public ICustomAuthenticationStateProvider AuthStateProvider { get; set; } = null!;
+
+        [Inject]
+        public IAuthWebService AuthWebService { get; set; } = null!;
         #endregion
 
         #region overrides
@@ -24,12 +27,15 @@ namespace StockManagement.BlazorWebApp.Components
         {
             if (await AuthStateProvider.CheckAuthenticatedAsync())
             {
-                var result = await AuthStateProvider.GetAuthenticationStateAsync();
-                if (result != null)
-                {
-                    User.Name = result.User.Claims.First(c => c.Type == ClaimTypes.Name).Value ?? "";
-                    User.Email = result.User.Claims.First(c => c.Type == ClaimTypes.Email).Value ?? "";
-                }
+                //var result = await AuthStateProvider.GetAuthenticationStateAsync();
+                //if (result != null)
+                //{
+                //    User.Name = result.User.Claims.First(c => c.Type == ClaimTypes.Name).Value ?? "";
+                //    User.Email = result.User.Claims.First(c => c.Type == ClaimTypes.Email).Value ?? "";
+                //}
+
+                var result = await AuthWebService.GetUserInfoAsync();
+                if (result is not null) User = result.User!;
             }
         }
         #endregion

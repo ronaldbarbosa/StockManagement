@@ -438,6 +438,11 @@ h5 {
 	cursor: pointer;
 }
 
+.avatar-profile {
+	width: 16rem;
+	height: 16rem;
+}
+
 @media only screen {
 	.demo-list [class*="column"]+[class*="column"]:last-child {
 		float: left;

@@ -144,4 +144,13 @@
   <data name="UpdateUserSuccessMessage" xml:space="preserve">
     <value>Your information has been updated successfully</value>
   </data>
+  <data name="ProfileUpdatePhoto" xml:space="preserve">
+    <value>Update Photo</value>
+  </data>
+  <data name="ProfileEmailConfirmed" xml:space="preserve">
+    <value>Email Confirmed?</value>
+  </data>
+  <data name="ProfileTwoFactorEnabled" xml:space="preserve">
+    <value>Two-factor authentication enabled?</value>
+  </data>
 </root>

@@ -25,39 +25,78 @@
             <ErrorList Errors=Errors Area="Register" Title=@UserLocalizer["UpdateUserError"] />
         }
 
-        @if(HasAlertMessage)
+        @if (HasAlertMessage)
         {
             <AlertMessage Type=@AlertTypes.success Title=@UserLocalizer["UpdateUserSuccess"] Message=@UserLocalizer["UpdateUserSuccessMessage"] />
         }
 
         <EditForm Model=@User OnValidSubmit="OnValidSubmitAsync">
-            <DataAnnotationsValidator />            
+            <DataAnnotationsValidator />
 
             <div class="tab-content">
                 <div class="tab-pane fade show active" id="personalInfo" role="tabpanel" tabindex="0">
                     <div class="row row-cols-1 row-cols-lg-2">
                         <div class="col col-lg-4">
-                            <InputFile class="" OnChange="HandleFile" />
+                            <div class="d-flex flex-column align-items-center">
+                                <div class="avatar avatar-profile position-relative">
+                                    @if(string.IsNullOrEmpty(User.AvatarUrl))
+                                    {
+                                        string[] nomes = User.Name.Split(' ');
+                                        if (nomes.Length >= 2)
+                                        {
+                                            string avatar = string.Concat(nomes[0][0], nomes[1][0]);
 
-                            <ButtonComponent ButtonClass="btn-primary" ButtonText="Upload" ButtonType="ButtonTypes.button" IsLoading=@Loading OnClickCallback="@UploadFile" />
-
-                            <span class="fs-4">@UploadResult</span>
+                                            <span class="avatar-img avatar-title rounded-circle border border-white fs-1">
+                                                @avatar
+                                            </span>
+                                        }
+                                        else
+                                        {
+                                            <span class="avatar-img avatar-title rounded-circle border border-white fs-1">
+                                                US
+                                            </span>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <img src=@User.AvatarUrl class="avatar-img rounded-circle" />
+                                    }                                    
+                                    <button type="button" class="btn btn-primary btn-icon rounded-circle position-absolute bottom-0 p-4"
+                                            data-bs-toggle="collapse" data-bs-target="#uploadArea">
+                                        <i class="fas fa-camera"></i>
+                                    </button>
+                                </div>
+                                <div class="collapse mt-4" id="uploadArea">
+                                    <InputFile OnChange="HandleFile" accept="image/*" />
+                                    <ButtonComponent ButtonClass="btn-primary" ButtonText=@UserLocalizer["ProfileUpdatePhoto"] ButtonType="ButtonTypes.button" IsLoading=@Loading
+                                                     IconClass="fa-cloud-upload-alt" OnClickCallback="@UploadFile" />
+                                </div>
+                            </div>
                         </div>
                         <div class="col col-lg-8">
-                            <TextInputComponent Id="Name" Label=@UserLocalizer["UserName"] Type=@InputTypes.text Value=@User!.Name
-                                ValueChanged=@(v => User!.Name = v) ValueExpression="() => User!.Name" />
-                            <TextInputComponent Id="PhoneNumber" Label=@UserLocalizer["UserPhoneNumber"] Type=@InputTypes.text Value=@User!.PhoneNumber
-                                ValueChanged=@(v => User!.PhoneNumber = v) ValueExpression="() => User!.PhoneNumber" />
-                            <CheckInputComponent Id="PhoneNumberConfirmed" Label=@UserLocalizer["UserPhoneNumberConfirmed"] Value=@(User!.PhoneNumberConfirmed)
-                                ValueChanged=@(v => User!.PhoneNumberConfirmed = v) ValueExpression="() => User!.PhoneNumberConfirmed" Disabled=true />
+                            <TextInputComponent Id="Name" Label=@UserLocalizer["UserName"] Type=@InputTypes.text Value=@User.Name
+                                                ValueChanged=@(v => User.Name = v) ValueExpression="() => User.Name" />
+                            <TextInputComponent Id="PhoneNumber" Label=@UserLocalizer["UserPhoneNumber"] Type=@InputTypes.text Value=@User.PhoneNumber
+                                                ValueChanged=@(v => User.PhoneNumber = v) ValueExpression="() => User.PhoneNumber" />
+                            <CheckInputComponent Id="PhoneNumberConfirmed" Label=@UserLocalizer["UserPhoneNumberConfirmed"] Value=@(User.PhoneNumberConfirmed)
+                                                 ValueChanged=@(v => User.PhoneNumberConfirmed = v) ValueExpression="() => User.PhoneNumberConfirmed" Disabled=true />
                         </div>
-                    </div>                    
+                    </div>
                 </div>
 
                 <div class="tab-pane fade" id="accessInfo" role="tabpanel" tabindex="0">
-                    <span>@User?.Email</span>
-                    <span>@User?.EmailConfirmed</span>
-                    <span>@User?.TwoFactorEnabled</span>
+                    <div class="row row-cols-1 row-cols-lg-2">
+                        <div class="col">
+                            <TextInputComponent Id="Email" Label=@CommonLocalizer["LoginEmail"] Type=@InputTypes.email Value=@User.Email
+                                                ValueChanged=@(v => User.Email = v) ValueExpression="() => User.Email" />                            
+                        </div>
+                        <div class="col d-flex">
+                            <CheckInputComponent Id="EmailConfirmed" Label=@UserLocalizer["ProfileEmailConfirmed"] Value=@(User.EmailConfirmed)
+                                                 ValueChanged=@(v => User.EmailConfirmed = v) ValueExpression="() => User.EmailConfirmed" Disabled=true />
+                            <CheckInputComponent Id="TwoFactorEnabled" Label=@UserLocalizer["ProfileTwoFactorEnabled"] Value=@(User.TwoFactorEnabled)
+                                                 ValueChanged=@(v => User.TwoFactorEnabled = v) ValueExpression="() => User.TwoFactorEnabled" Disabled=true />
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="text-end">
@@ -65,6 +104,6 @@
                 <ButtonComponent ButtonType="ButtonTypes.button" ButtonClass="btn-black" IconClass="fa-reply" ButtonText=@CommonLocalizer["CommonReturn"] IsLoading="@false" OnClickCallback="RedirectToLogin" />
             </div>
         </EditForm>
-        
+
     </div>
 </div>

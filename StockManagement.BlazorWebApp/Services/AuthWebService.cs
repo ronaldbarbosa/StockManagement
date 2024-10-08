@@ -11,14 +11,25 @@ namespace StockManagement.BlazorWebApp.Services
     {
         private readonly HttpClient _client = clientFactory.CreateClient("client");
 
+        private UserDTO? _userDTO;
+
         public async Task<GetUserResponse> GetUserInfoAsync()
         {
-            var result = await _client.GetAsync("user/info");
             var response = new GetUserResponse();
 
-            if (result.IsSuccessStatusCode)
+            if (_userDTO is null)
             {
-                response.User = await result.Content.ReadFromJsonAsync<UserDTO>();
+                var result = await _client.GetAsync("user/info");
+                
+
+                if (result.IsSuccessStatusCode)
+                {
+                    response.User = await result.Content.ReadFromJsonAsync<UserDTO>();
+                }                
+            }
+            else
+            {
+                response.User = _userDTO;
             }
 
             return response;
@@ -31,7 +42,8 @@ namespace StockManagement.BlazorWebApp.Services
 
             if (result.IsSuccessStatusCode)
             {
-                response.User = await result.Content.ReadFromJsonAsync<UserDTO>();
+                _userDTO = await result.Content.ReadFromJsonAsync<UserDTO>();
+                response.User = _userDTO;
             }
 
             return response;
@@ -41,7 +53,11 @@ namespace StockManagement.BlazorWebApp.Services
         {
             var result = await _client.PostAsJsonAsync("login?useCookies=true", request);
 
-            if (result.IsSuccessStatusCode) return new LoginResponse();
+            if (result.IsSuccessStatusCode)
+            {
+                await GetUserInfoAsync();
+                return new LoginResponse();
+            }                             
 
             var errors = await result.Content.ReadFromJsonAsync<LoginResponse>();
 

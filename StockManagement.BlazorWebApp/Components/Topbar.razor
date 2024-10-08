@@ -6,7 +6,28 @@
         <div class="d-flex topbar-user dropdown hidden-caret submenu"> 
             <a class="dropdown-toggle profile-pic d-flex align-items-center" data-bs-toggle="dropdown" data-bs-display="static" href="#" aria-expanded="false">
                 <div class="avatar-sm">
-                    <img src="img/talha.jpg" alt="" class="avatar-img rounded-circle">
+                    @if (string.IsNullOrEmpty(User.AvatarUrl))
+                    {
+                        string[] nomes = User.Name.Split(' ');
+                        if (nomes.Length >= 2)
+                        {
+                            string avatar = string.Concat(nomes[0][0], nomes[1][0]);
+
+                            <span class="avatar-img avatar-title rounded-circle border border-white">
+                                @avatar
+                            </span>
+                        }
+                        else
+                        {
+                            <span class="avatar-img avatar-title rounded-circle border border-white">
+                                US
+                            </span>
+                        }
+                    }
+                    else
+                    {
+                        <img src=@User.AvatarUrl alt="image profile" class="avatar-img rounded-circle">
+                    }
                 </div>
                 <span class="profile-username ms-2">
                     <span class="op-7">@Localizer["TopBarGreeting"]</span> <span class="fw-bold">@User.Name</span>
@@ -17,7 +38,31 @@
                     <div class="dropdown-user-scroll scrollbar-outer scroll-content">
                         <div>
                             <div class="user-box">
-                                <div class="avatar-lg"><img src="img/arashmil.jpg" alt="image profile" class="avatar-img rounded"></div>
+                                <div class="avatar-lg">
+                                    @if(string.IsNullOrEmpty(User.AvatarUrl))
+                                    {
+                                        string[] nomes = User.Name.Split(' ');
+
+                                        if (nomes.Length >= 2)
+                                        {
+                                            string avatar = string.Concat(nomes[0][0], nomes[1][0]);
+
+                                            <span class="avatar-img avatar-title rounded-circle border border-white">
+                                                @avatar
+                                            </span>
+                                        }
+                                        else
+                                        {
+                                            <span class="avatar-img avatar-title rounded-circle border border-white">
+                                                US
+                                            </span>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <img src=@User.AvatarUrl alt="image profile" class="avatar-img rounded">
+                                    }                                    
+                                </div>
                                 <div class="u-text">
                                     <h4>@User.Name</h4>
                                     <p class="text-muted">@User.Email</p><NavLink href="/Perfil" class="btn btn-xs btn-secondary btn-sm">@Localizer["TopBarViewProfile"]</NavLink>
