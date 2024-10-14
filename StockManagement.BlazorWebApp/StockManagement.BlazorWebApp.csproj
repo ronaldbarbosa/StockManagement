@@ -13,6 +13,10 @@
 	  <Optimize>False</Optimize>
 	</PropertyGroup>
 
+	<PropertyGroup>
+  		<BlazorWebAssemblyEnableDebugging>true</BlazorWebAssemblyEnableDebugging>
+	</PropertyGroup>
+
 	<ItemGroup>
 		<Compile Remove="src\**" />
 		<Content Remove="src\**" />

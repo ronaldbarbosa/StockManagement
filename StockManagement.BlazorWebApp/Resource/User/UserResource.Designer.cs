@@ -79,6 +79,15 @@ namespace StockManagement.BlazorWebApp.Resource.User {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Email Confirmed?.
+        /// </summary>
+        public static string ProfileEmailConfirmed {
+            get {
+                return ResourceManager.GetString("ProfileEmailConfirmed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Personal Info.
         /// </summary>
         public static string ProfilePersonalInfo {
@@ -88,11 +97,101 @@ namespace StockManagement.BlazorWebApp.Resource.User {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Two-factor authentication enabled?.
+        /// </summary>
+        public static string ProfileTwoFactorEnabled {
+            get {
+                return ResourceManager.GetString("ProfileTwoFactorEnabled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update Photo.
+        /// </summary>
+        public static string ProfileUpdatePhoto {
+            get {
+                return ResourceManager.GetString("ProfileUpdatePhoto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error updating user information.
+        /// </summary>
+        public static string UpdateUserError {
+            get {
+                return ResourceManager.GetString("UpdateUserError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update Password.
+        /// </summary>
+        public static string UpdateUserPassword {
+            get {
+                return ResourceManager.GetString("UpdateUserPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occurred while trying to update the password.
+        /// </summary>
+        public static string UpdateUserPasswordError {
+            get {
+                return ResourceManager.GetString("UpdateUserPasswordError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter the current password and the new password.
+        /// </summary>
+        public static string UpdateUserPasswordMessage {
+            get {
+                return ResourceManager.GetString("UpdateUserPasswordMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User updated successfully.
+        /// </summary>
+        public static string UpdateUserSuccess {
+            get {
+                return ResourceManager.GetString("UpdateUserSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your information has been updated successfully.
+        /// </summary>
+        public static string UpdateUserSuccessMessage {
+            get {
+                return ResourceManager.GetString("UpdateUserSuccessMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Current password.
+        /// </summary>
+        public static string UserCurrentPassword {
+            get {
+                return ResourceManager.GetString("UserCurrentPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
         public static string UserName {
             get {
                 return ResourceManager.GetString("UserName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nova senha.
+        /// </summary>
+        public static string UserNewPassword {
+            get {
+                return ResourceManager.GetString("UserNewPassword", resourceCulture);
             }
         }
         

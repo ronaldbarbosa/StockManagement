@@ -11,5 +11,6 @@ namespace StockManagement.BlazorWebApp.Services.Interfaces
         Task<CreateUserResponse> RegisterAsync(CreateUserRequest request);
         Task<GetUserResponse> GetUserInfoAsync();
         Task<UpdateUserResponse> UpdateUserInfoAsync(UserDTO user);
+        Task<UpdateUserAccessResponse> UpdateUserAccessAsync(UpdateUserAccessRequest user);
     }
 }

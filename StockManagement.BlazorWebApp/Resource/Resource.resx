@@ -174,28 +174,28 @@
   <data name="LogoutSessionEnded" xml:space="preserve">
     <value>Session ended...</value>
   </data>
-  <data name="RegisterPasswordTooShort" xml:space="preserve">
+  <data name="PasswordTooShort" xml:space="preserve">
     <value>Passwords must be at least 6 characters</value>
   </data>
-  <data name="RegisterPasswordRequiresNonAlphanumeric" xml:space="preserve">
+  <data name="PasswordRequiresNonAlphanumeric" xml:space="preserve">
     <value>Passwords must have at least one non alphanumeric character</value>
   </data>
-  <data name="RegisterPasswordRequiresDigit" xml:space="preserve">
+  <data name="PasswordRequiresDigit" xml:space="preserve">
     <value>Passwords must have at least one digit ('0'-'9')</value>
   </data>
-  <data name="RegisterPasswordRequiresLower" xml:space="preserve">
+  <data name="PasswordRequiresLower" xml:space="preserve">
     <value>Passwords must have at least one lowercase ('a'-'z')</value>
   </data>
-  <data name="RegisterPasswordRequiresUpper" xml:space="preserve">
+  <data name="PasswordRequiresUpper" xml:space="preserve">
     <value>Passwords must have at least one uppercase ('A'-'Z')</value>
   </data>
-  <data name="RegisterPasswordRequiresUniqueChars" xml:space="preserve">
+  <data name="PasswordRequiresUniqueChars" xml:space="preserve">
     <value>Passwords must use at least 1 different characters</value>
   </data>
-  <data name="RegisterInvalidEmail" xml:space="preserve">
+  <data name="InvalidEmail" xml:space="preserve">
     <value>Invalid email</value>
   </data>
-  <data name="RegisterDuplicateEmail" xml:space="preserve">
+  <data name="DuplicateEmail" xml:space="preserve">
     <value>Email is already taken</value>
   </data>
   <data name="RegisterError" xml:space="preserve">
@@ -212,5 +212,8 @@
   </data>
   <data name="CommonError" xml:space="preserve">
     <value>Error processing request. Please contact support</value>
+  </data>
+  <data name="PasswordMismatch" xml:space="preserve">
+    <value>Incorrect password</value>
   </data>
 </root>

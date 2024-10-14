@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
+using Microsoft.JSInterop;
 using StockManagement.Application.DTOs;
+using StockManagement.Application.DTOs.Request;
 using StockManagement.Application.DTOs.Response;
 using StockManagement.BlazorWebApp.Authentication;
 using StockManagement.BlazorWebApp.Services.Interfaces;
@@ -27,15 +29,19 @@ namespace StockManagement.BlazorWebApp.Pages.User
         #region properties
         public IBrowserFile? SelectedFile { get; set; }
 
-        public string UploadResult { get; set; } =string.Empty;
+        public string UploadResult { get; set; } = string.Empty;
 
         public bool Loading { get; set; } = false;
 
         public UserDTO User { get; set; } = new UserDTO();
 
+        public UpdateUserAccessRequest UserAccess { get; set; } = new UpdateUserAccessRequest();
+
         public List<string> Errors { get; set; } = [];
 
         public bool HasAlertMessage { get; set; } = false;
+
+        public ErrorArea ErrorArea { get; set; } 
         #endregion
 
         #region overrides
@@ -102,7 +108,7 @@ namespace StockManagement.BlazorWebApp.Pages.User
 
                 if (result.IsSucceded())
                 {
-                    HasAlertMessage = true;
+                    HasAlertMessage = true;                    
                 }
                 else
                 {
@@ -112,12 +118,52 @@ namespace StockManagement.BlazorWebApp.Pages.User
                         {
                             Errors.Add(errorList);
                         }
+                        ErrorArea = ErrorArea.ProfileInfo;
                     }
                 }
             }
             catch (Exception ex)
             {
                 Errors.Add(CommonLocalizer["CommonError"]);
+                ErrorArea = ErrorArea.ProfileInfo;
+            }
+
+            Loading = false;
+        }
+
+        public async Task UpdateUserAccessInfo()
+        {
+            Loading = true;
+            Errors = [];
+            HasAlertMessage = false;
+
+            try
+            {
+                UserAccess.NewEmail = User.Email;
+                var result = await AuthWebService.UpdateUserAccessAsync(UserAccess);
+
+                if (result.IsSucceded())
+                {
+                    HasAlertMessage = true;
+                    await JS.InvokeVoidAsync("closeModal", "modal-update-password");
+                }
+                else
+                {
+                    if (result.Errors.Count != 0)
+                    {
+                        foreach (var errorList in result.Errors.Keys)
+                        {
+                            Errors.Add(errorList);
+                        }
+
+                        ErrorArea = ErrorArea.UpdatePasswordModal;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Errors.Add(CommonLocalizer["CommonError"]);
+                ErrorArea = ErrorArea.UpdatePasswordModal;
             }
 
             Loading = false;
@@ -127,6 +173,16 @@ namespace StockManagement.BlazorWebApp.Pages.User
         {
             NavigationManager.NavigateTo("/Login");
         }
-        #endregion
+        #endregion        
     }
+
+    #region enums
+
+    public enum ErrorArea
+    {
+        ProfileInfo,
+        UpdatePasswordModal
+    }
+
+    #endregion
 }

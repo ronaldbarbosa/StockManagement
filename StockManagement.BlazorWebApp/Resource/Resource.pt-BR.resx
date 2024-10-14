@@ -174,28 +174,28 @@
   <data name="LogoutSessionEnded" xml:space="preserve">
     <value>Sessão finalizada...</value>
   </data>
-  <data name="RegisterPasswordTooShort" xml:space="preserve">
+  <data name="PasswordTooShort" xml:space="preserve">
     <value>Senhas devem possuir pelo menos 6 caracteres</value>
   </data>
-  <data name="RegisterPasswordRequiresNonAlphanumeric" xml:space="preserve">
+  <data name="PasswordRequiresNonAlphanumeric" xml:space="preserve">
     <value>Senhas devem conter pelo menos um caractere não alfanumérico</value>
   </data>
-  <data name="RegisterPasswordRequiresDigit" xml:space="preserve">
+  <data name="PasswordRequiresDigit" xml:space="preserve">
     <value>Senhas devem conter pelo menos um dígito ('0'-'9')</value>
   </data>
-  <data name="RegisterPasswordRequiresLower" xml:space="preserve">
+  <data name="PasswordRequiresLower" xml:space="preserve">
     <value>Senhas devem conter pelo menos um caractere minúsculo ('a'-'z')</value>
   </data>
-  <data name="RegisterPasswordRequiresUpper" xml:space="preserve">
+  <data name="PasswordRequiresUpper" xml:space="preserve">
     <value>Senhas devem conter pelo menos um caractere maiúsculo ('A'-'Z')</value>
   </data>
-  <data name="RegisterPasswordRequiresUniqueChars" xml:space="preserve">
+  <data name="PasswordRequiresUniqueChars" xml:space="preserve">
     <value>Senhas devem usar pelo menos 1 caractere diferente</value>
   </data>
-  <data name="RegisterInvalidEmail" xml:space="preserve">
+  <data name="InvalidEmail" xml:space="preserve">
     <value>Email inválido</value>
   </data>
-  <data name="RegisterDuplicateEmail" xml:space="preserve">
+  <data name="DuplicateEmail" xml:space="preserve">
     <value>O e-mail já foi cadastrado</value>
   </data>
   <data name="RegisterError" xml:space="preserve">
@@ -212,5 +212,8 @@
   </data>
   <data name="CommonError" xml:space="preserve">
     <value>Erro ao processar requisição. Entre em contato com o serviço de suporte.</value>
+  </data>
+  <data name="PasswordMismatch" xml:space="preserve">
+    <value>Senha incorreta</value>
   </data>
 </root>

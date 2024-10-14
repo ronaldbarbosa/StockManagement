@@ -61,6 +61,15 @@ namespace StockManagement.BlazorWebApp.Resource {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error processing request. Please contact support.
+        /// </summary>
+        public static string CommonError {
+            get {
+                return ResourceManager.GetString("CommonError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Return.
         /// </summary>
         public static string CommonReturn {
@@ -79,11 +88,29 @@ namespace StockManagement.BlazorWebApp.Resource {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Email is already taken.
+        /// </summary>
+        public static string DuplicateEmail {
+            get {
+                return ResourceManager.GetString("DuplicateEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Hello World.
         /// </summary>
         public static string HelloWorld {
             get {
                 return ResourceManager.GetString("HelloWorld", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid email.
+        /// </summary>
+        public static string InvalidEmail {
+            get {
+                return ResourceManager.GetString("InvalidEmail", resourceCulture);
             }
         }
         
@@ -160,7 +187,7 @@ namespace StockManagement.BlazorWebApp.Resource {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Register here..
+        ///   Looks up a localized string similar to Register here.
         /// </summary>
         public static string LoginRegisterHere {
             get {
@@ -178,7 +205,7 @@ namespace StockManagement.BlazorWebApp.Resource {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unauthorized: check your email/password..
+        ///   Looks up a localized string similar to Unauthorized: check your email/password.
         /// </summary>
         public static string LoginUnauthorized {
             get {
@@ -214,11 +241,65 @@ namespace StockManagement.BlazorWebApp.Resource {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Email is already taken..
+        ///   Looks up a localized string similar to Incorrect password.
         /// </summary>
-        public static string RegisterDuplicateEmail {
+        public static string PasswordMismatch {
             get {
-                return ResourceManager.GetString("RegisterDuplicateEmail", resourceCulture);
+                return ResourceManager.GetString("PasswordMismatch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Passwords must have at least one digit (&apos;0&apos;-&apos;9&apos;).
+        /// </summary>
+        public static string PasswordRequiresDigit {
+            get {
+                return ResourceManager.GetString("PasswordRequiresDigit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Passwords must have at least one lowercase (&apos;a&apos;-&apos;z&apos;).
+        /// </summary>
+        public static string PasswordRequiresLower {
+            get {
+                return ResourceManager.GetString("PasswordRequiresLower", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Passwords must have at least one non alphanumeric character.
+        /// </summary>
+        public static string PasswordRequiresNonAlphanumeric {
+            get {
+                return ResourceManager.GetString("PasswordRequiresNonAlphanumeric", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Passwords must use at least 1 different characters.
+        /// </summary>
+        public static string PasswordRequiresUniqueChars {
+            get {
+                return ResourceManager.GetString("PasswordRequiresUniqueChars", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Passwords must have at least one uppercase (&apos;A&apos;-&apos;Z&apos;).
+        /// </summary>
+        public static string PasswordRequiresUpper {
+            get {
+                return ResourceManager.GetString("PasswordRequiresUpper", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Passwords must be at least 6 characters.
+        /// </summary>
+        public static string PasswordTooShort {
+            get {
+                return ResourceManager.GetString("PasswordTooShort", resourceCulture);
             }
         }
         
@@ -228,69 +309,6 @@ namespace StockManagement.BlazorWebApp.Resource {
         public static string RegisterError {
             get {
                 return ResourceManager.GetString("RegisterError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Invalid email..
-        /// </summary>
-        public static string RegisterInvalidEmail {
-            get {
-                return ResourceManager.GetString("RegisterInvalidEmail", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Passwords must have at least one digit (&apos;0&apos;-&apos;9&apos;)..
-        /// </summary>
-        public static string RegisterPasswordRequiresDigit {
-            get {
-                return ResourceManager.GetString("RegisterPasswordRequiresDigit", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Passwords must have at least one lowercase (&apos;a&apos;-&apos;z&apos;)..
-        /// </summary>
-        public static string RegisterPasswordRequiresLower {
-            get {
-                return ResourceManager.GetString("RegisterPasswordRequiresLower", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Passwords must have at least one non alphanumeric character..
-        /// </summary>
-        public static string RegisterPasswordRequiresNonAlphanumeric {
-            get {
-                return ResourceManager.GetString("RegisterPasswordRequiresNonAlphanumeric", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Passwords must use at least 1 different characters..
-        /// </summary>
-        public static string RegisterPasswordRequiresUniqueChars {
-            get {
-                return ResourceManager.GetString("RegisterPasswordRequiresUniqueChars", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Passwords must have at least one uppercase (&apos;A&apos;-&apos;Z&apos;)..
-        /// </summary>
-        public static string RegisterPasswordRequiresUpper {
-            get {
-                return ResourceManager.GetString("RegisterPasswordRequiresUpper", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Passwords must be at least 6 characters..
-        /// </summary>
-        public static string RegisterPasswordTooShort {
-            get {
-                return ResourceManager.GetString("RegisterPasswordTooShort", resourceCulture);
             }
         }
         
@@ -336,15 +354,6 @@ namespace StockManagement.BlazorWebApp.Resource {
         public static string TopBarViewProfile {
             get {
                 return ResourceManager.GetString("TopBarViewProfile", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Error updating user information.
-        /// </summary>
-        public static string UpdateUserError {
-            get {
-                return ResourceManager.GetString("UpdateUserError", resourceCulture);
             }
         }
     }

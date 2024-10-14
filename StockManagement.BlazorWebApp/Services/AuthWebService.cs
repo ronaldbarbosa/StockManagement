@@ -82,5 +82,20 @@ namespace StockManagement.BlazorWebApp.Services
             var errors = await result.Content.ReadFromJsonAsync<CreateUserResponse>();
             return errors ?? new CreateUserResponse();
         }
+
+        public async Task<UpdateUserAccessResponse> UpdateUserAccessAsync(UpdateUserAccessRequest user)
+        {
+            var result = await _client.PostAsJsonAsync("manage/info", user);
+            var response = new UpdateUserAccessResponse();
+
+            if (result.IsSuccessStatusCode)
+            {
+                return response;
+            }
+
+            var errors = await result.Content.ReadFromJsonAsync<UpdateUserAccessResponse>();
+
+            return errors ?? new UpdateUserAccessResponse();
+        }
     }
 }

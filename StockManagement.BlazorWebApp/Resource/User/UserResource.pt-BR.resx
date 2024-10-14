@@ -153,4 +153,19 @@
   <data name="ProfileTwoFactorEnabled" xml:space="preserve">
     <value>Autenticação em dois fatores ativa?</value>
   </data>
+  <data name="UpdateUserPassword" xml:space="preserve">
+    <value>Atualizar Senha</value>
+  </data>
+  <data name="UpdateUserPasswordMessage" xml:space="preserve">
+    <value>Digite a senha atual e a nova senha</value>
+  </data>
+  <data name="UserCurrentPassword" xml:space="preserve">
+    <value>Senha atual</value>
+  </data>
+  <data name="UserNewPassword" xml:space="preserve">
+    <value>Nova senha</value>
+  </data>
+  <data name="UpdateUserPasswordError" xml:space="preserve">
+    <value>Ocorreu um erro ao tentar atualizar a senha</value>
+  </data>
 </root>
