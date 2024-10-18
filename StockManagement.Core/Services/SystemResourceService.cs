@@ -4,7 +4,7 @@ using StockManagement.Domain.Interfaces.Services;
 
 namespace StockManagement.Domain.Services
 {
-    public class CategoryService(IRepositoryBase<Category> repository) : ServiceBase<Category>(repository), ICategoryService
+    public class SystemResourceService(ISystemResourceRepository repository) : ServiceBase<SystemResource>(repository), ISystemResourceService
     {
     }
 }

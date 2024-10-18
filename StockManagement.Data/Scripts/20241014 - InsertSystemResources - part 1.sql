@@ -1,0 +1,21 @@
+﻿BEGIN TRY
+    BEGIN TRANSACTION;
+
+    DELETE FROM SystemResource
+    WHERE Id = 'A1169D53-714A-4E0B-A34B-4E277C42B554'
+    DELETE FROM SystemResource
+    WHERE Id = 'C6BD1069-05D4-44BA-9757-FDB89BA279DA'
+
+    INSERT INTO SystemResource (Id, Name)
+    VALUES ('A1169D53-714A-4E0B-A34B-4E277C42B554', 'MenuAdministration');
+    INSERT INTO SystemResource (Id, Name, ParentId)
+    VALUES ('C6BD1069-05D4-44BA-9757-FDB89BA279DA', 'MenuRoles', 'A1169D53-714A-4E0B-A34B-4E277C42B554');
+
+    COMMIT TRANSACTION;
+    PRINT 'Transação realizada com sucesso. COMMIT executado.';
+
+END TRY
+BEGIN CATCH
+    ROLLBACK TRANSACTION;
+    PRINT 'Erro encontrado. Transação revertida. ROLLBACK executado.';
+END CATCH;

@@ -12,8 +12,8 @@ using StockManagement.Data;
 namespace StockManagement.Data.Migrations
 {
     [DbContext(typeof(DataDbContext))]
-    [Migration("20240919024747_CreateLabelTable")]
-    partial class CreateLabelTable
+    [Migration("20241017234617_AddSystemResourceTable")]
+    partial class AddSystemResourceTable
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -51,29 +51,6 @@ namespace StockManagement.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Category", (string)null);
-                });
-
-            modelBuilder.Entity("StockManagement.Domain.Entities.Label", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("Language")
-                        .HasColumnType("int");
-
-                    b.Property<string>("SystemName")
-                        .IsRequired()
-                        .HasMaxLength(500)
-                        .HasColumnType("NVARCHAR");
-
-                    b.Property<string>("Value")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Label", (string)null);
                 });
 
             modelBuilder.Entity("StockManagement.Domain.Entities.Product", b =>
@@ -121,6 +98,27 @@ namespace StockManagement.Data.Migrations
                     b.ToTable("Product", (string)null);
                 });
 
+            modelBuilder.Entity("StockManagement.Domain.Entities.SystemResource", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("NVARCHAR");
+
+                    b.Property<Guid?>("SystemResourceId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SystemResourceId");
+
+                    b.ToTable("SystemResource", (string)null);
+                });
+
             modelBuilder.Entity("StockManagement.Domain.Entities.Product", b =>
                 {
                     b.HasOne("StockManagement.Domain.Entities.Category", "Category")
@@ -130,6 +128,19 @@ namespace StockManagement.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("StockManagement.Domain.Entities.SystemResource", b =>
+                {
+                    b.HasOne("StockManagement.Domain.Entities.SystemResource", null)
+                        .WithMany("Children")
+                        .HasForeignKey("SystemResourceId")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
+            modelBuilder.Entity("StockManagement.Domain.Entities.SystemResource", b =>
+                {
+                    b.Navigation("Children");
                 });
 #pragma warning restore 612, 618
         }

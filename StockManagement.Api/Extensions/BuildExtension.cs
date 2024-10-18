@@ -28,14 +28,17 @@ namespace StockManagement.Api.Extensions
             // Repositories
             builder.Services.AddScoped(typeof(IRepositoryBase<>), typeof(RepositoryBase<>));
             builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+            builder.Services.AddScoped<ISystemResourceRepository, SystemResourceRepository>();
 
             // Services
             builder.Services.AddScoped(typeof(IServiceBase<>), typeof(ServiceBase<>));
             builder.Services.AddScoped<ICategoryService, CategoryService>();
+            builder.Services.AddScoped<ISystemResourceService, SystemResourceService>();
 
             // AppServices
             builder.Services.AddScoped<ICategoryAppService, CategoryAppService>();
             builder.Services.AddScoped<IBlobStorageAppService, AzureBlobStorageAppService>();
+            builder.Services.AddScoped<ISystemResourceAppService, SystemResourceAppService>();
             
             //builder.Services.AddScoped<IIdentityAppService, IdentityService>();
         }
