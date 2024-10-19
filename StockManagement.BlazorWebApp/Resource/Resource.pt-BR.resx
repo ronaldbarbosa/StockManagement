@@ -216,4 +216,25 @@
   <data name="PasswordMismatch" xml:space="preserve">
     <value>Senha incorreta</value>
   </data>
+  <data name="MenuHome" xml:space="preserve">
+    <value>Início</value>
+  </data>
+  <data name="MenuAdministration" xml:space="preserve">
+    <value>Administração</value>
+  </data>
+  <data name="MenuRoles" xml:space="preserve">
+    <value>Cargos</value>
+  </data>
+  <data name="SidebarMenuHome" xml:space="preserve">
+    <value>Início</value>
+  </data>
+  <data name="SidebarMenuAdministration" xml:space="preserve">
+    <value>Administração</value>
+  </data>
+  <data name="SidebarMenuRoles" xml:space="preserve">
+    <value>Cargos</value>
+  </data>
+  <data name="SidebarMenuUsers" xml:space="preserve">
+    <value>Usuários</value>
+  </data>
 </root>

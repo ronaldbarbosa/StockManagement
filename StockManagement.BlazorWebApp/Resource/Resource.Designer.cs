@@ -241,6 +241,33 @@ namespace StockManagement.BlazorWebApp.Resource {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Administration.
+        /// </summary>
+        public static string MenuAdministration {
+            get {
+                return ResourceManager.GetString("MenuAdministration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Home.
+        /// </summary>
+        public static string MenuHome {
+            get {
+                return ResourceManager.GetString("MenuHome", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Roles.
+        /// </summary>
+        public static string MenuRoles {
+            get {
+                return ResourceManager.GetString("MenuRoles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Incorrect password.
         /// </summary>
         public static string PasswordMismatch {
@@ -309,6 +336,42 @@ namespace StockManagement.BlazorWebApp.Resource {
         public static string RegisterError {
             get {
                 return ResourceManager.GetString("RegisterError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Administration.
+        /// </summary>
+        public static string SidebarMenuAdministration {
+            get {
+                return ResourceManager.GetString("SidebarMenuAdministration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Home.
+        /// </summary>
+        public static string SidebarMenuHome {
+            get {
+                return ResourceManager.GetString("SidebarMenuHome", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Roles.
+        /// </summary>
+        public static string SidebarMenuRoles {
+            get {
+                return ResourceManager.GetString("SidebarMenuRoles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Users.
+        /// </summary>
+        public static string SidebarMenuUsers {
+            get {
+                return ResourceManager.GetString("SidebarMenuUsers", resourceCulture);
             }
         }
         

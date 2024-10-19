@@ -29,5 +29,6 @@ await host.SetDefaultCulture();
 
 builder.Services.AddTransient<IAuthWebService, AuthWebService>();
 builder.Services.AddTransient<IBlobStorageWebService, AzureBlobStorageWebService>();
+builder.Services.AddTransient<ISystemResourceWebService, SystemResourceWebService>();
 
 await builder.Build().RunAsync();

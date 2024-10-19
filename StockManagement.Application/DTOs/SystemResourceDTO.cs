@@ -1,4 +1,5 @@
 ﻿using StockManagement.Domain.Entities;
+using System.IO;
 
 namespace StockManagement.Application.DTOs
 {
@@ -7,12 +8,16 @@ namespace StockManagement.Application.DTOs
         public Guid Id { get; init; }
         public string Name { get; set; } = string.Empty;
         public List<SystemResourceDTO> Children { get; set; } = [];
+        public string Path { get; set; }
+        public string Icon { get; set; }
 
-        public SystemResourceDTO(Guid id, string name, List<SystemResourceDTO>? children) : this()
+        public SystemResourceDTO(Guid id, string name, List<SystemResourceDTO>? children, string icon, string? path) : this()
         {
             Id = id;
             Name = name;
             Children = children ?? [];
+            Icon = icon;
+            Path = path ?? "#";
         }
 
         public static explicit operator SystemResourceDTO(SystemResource systemResource)
@@ -31,7 +36,9 @@ namespace StockManagement.Application.DTOs
             {
                 Id = systemResource.Id,
                 Name = systemResource.Name,
-                Children = children
+                Children = children,
+                Icon = systemResource.Icon,
+                Path = systemResource.Path
             };
         }
 
@@ -40,7 +47,9 @@ namespace StockManagement.Application.DTOs
             return new SystemResource()
             {
                 Id = systemResourceDTO.Id,
-                Name = systemResourceDTO.Name
+                Name = systemResourceDTO.Name,
+                Icon = systemResourceDTO.Icon,
+                Path = systemResourceDTO.Path
             };
         }
     }

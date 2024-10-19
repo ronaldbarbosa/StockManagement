@@ -17,6 +17,18 @@ namespace StockManagement.Data.EntityConfig
                 .HasColumnType("NVARCHAR")
                 .HasMaxLength(150);
 
+            builder.Property(x => x.Path)
+                .IsRequired()
+                .HasColumnType("NVARCHAR")
+                .HasMaxLength(200)
+                .HasDefaultValue("#");
+
+            builder.Property(x => x.Icon)
+                .IsRequired()
+                .HasColumnType("NVARCHAR")
+                .HasMaxLength(50)
+                .HasDefaultValue("");
+
             builder.HasMany(x => x.Children)
                 .WithOne()
                 .HasForeignKey(x => x.ParentId)
