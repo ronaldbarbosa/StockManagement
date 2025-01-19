@@ -2,9 +2,9 @@
 
 namespace StockManagement.BlazorWebApp.Services
 {
-    public class AzureBlobStorageWebService(IHttpClientFactory clientFactory) : IBlobStorageWebService
+    public class AzureBlobStorageWebService(HttpClient httpClient) : IBlobStorageWebService
     {
-        private readonly HttpClient _client = clientFactory.CreateClient("client");
+        private readonly HttpClient _client = httpClient;
 
         public async Task<HttpResponseMessage> UploadImageAsync(MultipartFormDataContent content)
         {

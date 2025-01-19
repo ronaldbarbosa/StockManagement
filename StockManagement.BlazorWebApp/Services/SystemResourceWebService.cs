@@ -6,9 +6,9 @@ using System.Net.Http.Json;
 
 namespace StockManagement.BlazorWebApp.Services
 {
-    public class SystemResourceWebService(IHttpClientFactory clientFactory) : ISystemResourceWebService
+    public class SystemResourceWebService(HttpClient httpClient) : ISystemResourceWebService
     {
-        private readonly HttpClient _client = clientFactory.CreateClient("client");
+        private readonly HttpClient _client = httpClient;
 
         public async Task<SystemResourceResponse> GetAllResourcesAsync()
         {

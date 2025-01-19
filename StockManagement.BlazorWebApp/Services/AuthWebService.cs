@@ -2,14 +2,15 @@
 using StockManagement.Application.DTOs.Request;
 using StockManagement.Application.DTOs.Response;
 using StockManagement.BlazorWebApp.Services.Interfaces;
+using System.Net;
 using System.Net.Http.Json;
 using System.Text;
 
 namespace StockManagement.BlazorWebApp.Services
 {
-    public class AuthWebService(IHttpClientFactory clientFactory) : IAuthWebService
+    public class AuthWebService(HttpClient httpClient) : IAuthWebService
     {
-        private readonly HttpClient _client = clientFactory.CreateClient("client");
+        private readonly HttpClient _client = httpClient;
 
         private UserDTO? _userDTO;
 
@@ -63,7 +64,7 @@ namespace StockManagement.BlazorWebApp.Services
 
             return errors?.Errors.Count > 0 ? errors : new LoginResponse()
             {
-                StatusCode = System.Net.HttpStatusCode.Unauthorized
+                StatusCode = HttpStatusCode.Unauthorized
             };
         }
 

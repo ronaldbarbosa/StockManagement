@@ -5,10 +5,10 @@ using System.Security.Claims;
 
 namespace StockManagement.BlazorWebApp.Authentication
 {
-    public class CustomAuthenticationStateProvider(IHttpClientFactory clientFactory) : AuthenticationStateProvider, ICustomAuthenticationStateProvider
+    public class CustomAuthenticationStateProvider(HttpClient httpClient) : AuthenticationStateProvider, ICustomAuthenticationStateProvider
     {
         private bool _isAuthenticated = false;
-        private readonly HttpClient _client = clientFactory.CreateClient("client");
+        private readonly HttpClient _client = httpClient;
 
         public async Task<bool> CheckAuthenticatedAsync()
         {
