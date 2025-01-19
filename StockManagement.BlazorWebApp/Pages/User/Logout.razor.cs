@@ -15,7 +15,7 @@ namespace StockManagement.BlazorWebApp.Pages.User
         public ICustomAuthenticationStateProvider AuthStateProvider { get; set; } = null!;
 
         [Inject]
-        public IAuthWebService AuthWebService { get; set; } = null!;
+        public IUserWebService AuthWebService { get; set; } = null!;
 
         #endregion
 

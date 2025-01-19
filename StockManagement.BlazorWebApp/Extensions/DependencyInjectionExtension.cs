@@ -15,7 +15,7 @@ namespace StockManagement.BlazorWebApp.Extensions
             services.AddScoped(x =>
                 (ICustomAuthenticationStateProvider)x.GetRequiredService<AuthenticationStateProvider>());
 
-            RegisterHttpClient<IAuthWebService, AuthWebService>(services);
+            RegisterHttpClient<IUserWebService, UserWebService>(services);
             RegisterHttpClient<IBlobStorageWebService, AzureBlobStorageWebService>(services);
             RegisterHttpClient<ISystemResourceWebService, SystemResourceWebService>(services);
         }

@@ -8,7 +8,7 @@ using System.Text;
 
 namespace StockManagement.BlazorWebApp.Services
 {
-    public class AuthWebService(HttpClient httpClient) : IAuthWebService
+    public class UserWebService(HttpClient httpClient) : IUserWebService
     {
         private readonly HttpClient _client = httpClient;
 
@@ -50,7 +50,7 @@ namespace StockManagement.BlazorWebApp.Services
             return response;
         }
 
-        public async Task<LoginResponse> LoginAsync(LoginRequest request)
+        public async Task<LoginResponse> SignInAsync(LoginRequest request)
         {
             var result = await _client.PostAsJsonAsync("login?useCookies=true", request);
 
@@ -74,7 +74,7 @@ namespace StockManagement.BlazorWebApp.Services
             await _client.PostAsJsonAsync("logout", emptyContent);
         }
 
-        public async Task<CreateUserResponse> RegisterAsync(CreateUserRequest request)
+        public async Task<CreateUserResponse> SignUpAsync(CreateUserRequest request)
         {
             var result = await _client.PostAsJsonAsync("register", request);
             
@@ -97,6 +97,21 @@ namespace StockManagement.BlazorWebApp.Services
             var errors = await result.Content.ReadFromJsonAsync<UpdateUserAccessResponse>();
 
             return errors ?? new UpdateUserAccessResponse();
+        }
+
+        public Task<GetRolesResponse> GetAllRolesAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<GetRolesResponse> GetRolesAsync(string userId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<CreateRoleResponse> CreateRoleAsync(string roleName)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -17,7 +17,7 @@ namespace StockManagement.BlazorWebApp.Pages.User
         public ICustomAuthenticationStateProvider AuthStateProvider { get; set; } = null!;
 
         [Inject]
-        public IAuthWebService AuthWebService { get; set; } = null!;
+        public IUserWebService AuthWebService { get; set; } = null!;
 
         #endregion
 
@@ -49,7 +49,7 @@ namespace StockManagement.BlazorWebApp.Pages.User
 
             try
             {
-                var result = await AuthWebService.LoginAsync(InputModel);
+                var result = await AuthWebService.SignInAsync(InputModel);
 
                 if (result.IsSucceded() && result.StatusCode != HttpStatusCode.Unauthorized)
                 {

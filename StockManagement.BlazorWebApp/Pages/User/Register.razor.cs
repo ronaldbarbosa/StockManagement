@@ -15,7 +15,7 @@ namespace StockManagement.BlazorWebApp.Pages.User
         public ICustomAuthenticationStateProvider AuthStateProvider { get; set; } = null!;
 
         [Inject]
-        public IAuthWebService AuthWebService { get; set; } = null!;
+        public IUserWebService AuthWebService { get; set; } = null!;
 
         #endregion
 
@@ -38,7 +38,7 @@ namespace StockManagement.BlazorWebApp.Pages.User
 
             try
             {
-                var result = await AuthWebService.RegisterAsync(InputModel);
+                var result = await AuthWebService.SignUpAsync(InputModel);
                 if (result.IsSucceded())
                 {
                     await AuthStateProvider.GetAuthenticationStateAsync();

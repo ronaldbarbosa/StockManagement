@@ -17,7 +17,7 @@ namespace StockManagement.BlazorWebApp.Pages.User
         public IBlobStorageWebService BlobStorageWebService { get; set; } = null!;
 
         [Inject]
-        public IAuthWebService AuthWebService { get; set; } = null!;
+        public IUserWebService AuthWebService { get; set; } = null!;
 
         [Inject]
         public NavigationManager NavigationManager { get; set; } = null!;
