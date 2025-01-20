@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Routing;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using StockManagement.Application.DTOs;
 using StockManagement.BlazorWebApp.Services.Interfaces;
 using System.Net;

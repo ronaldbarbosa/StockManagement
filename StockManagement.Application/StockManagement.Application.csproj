@@ -13,6 +13,7 @@
   <ItemGroup>
     <ProjectReference Include="..\StockManagement.Core\StockManagement.Domain.csproj" />
     <ProjectReference Include="..\StockManagement.Data\StockManagement.Data.csproj" />
+    <ProjectReference Include="..\StockManagement.Shared\StockManagement.Shared.csproj" />
   </ItemGroup>
 
 </Project>

@@ -59,5 +59,50 @@ namespace StockManagement.BlazorWebApp.Resource.Administration {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Administration Menu.
+        /// </summary>
+        public static string ClaimMenuAdministration {
+            get {
+                return ResourceManager.GetString("ClaimMenuAdministration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit Role.
+        /// </summary>
+        public static string EditRole {
+            get {
+                return ResourceManager.GetString("EditRole", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total users with this role:.
+        /// </summary>
+        public static string RoleQuantityOfUsers {
+            get {
+                return ResourceManager.GetString("RoleQuantityOfUsers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Roles.
+        /// </summary>
+        public static string Roles {
+            get {
+                return ResourceManager.GetString("Roles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View Role.
+        /// </summary>
+        public static string ViewRole {
+            get {
+                return ResourceManager.GetString("ViewRole", resourceCulture);
+            }
+        }
     }
 }

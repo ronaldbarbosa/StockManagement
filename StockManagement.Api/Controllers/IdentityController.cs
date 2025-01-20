@@ -11,7 +11,7 @@ namespace StockManagement.Api.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [Authorize]
-    public class IdentityController(SignInManager<User> signInManager, UserManager<User> userManager) : ControllerBase
+    public class IdentityController(SignInManager<User> signInManager, UserManager<User> userManager, RoleManager<Role> roleManager) : ControllerBase
     {
         [HttpPost]        
         [Route("/logout")]
@@ -22,8 +22,8 @@ namespace StockManagement.Api.Controllers
         }
 
         [HttpGet]        
-        [Route("/roles")]
-        public async Task<IResult> Roles()
+        [Route("/user/roles")]
+        public async Task<IResult> UserRoles()
         {
             var user = HttpContext.User;
 
@@ -33,7 +33,7 @@ namespace StockManagement.Api.Controllers
             var identity = (ClaimsIdentity)user.Identity;
             var roles = identity
                 .FindAll(identity.RoleClaimType)
-                .Select(c => new RoleClaimDTO
+                .Select(c => new UserRoleDTO
                 {
                     Issuer = c.Issuer,
                     OriginalIssuer = c.OriginalIssuer,
@@ -42,6 +42,66 @@ namespace StockManagement.Api.Controllers
                     ValueType = c.ValueType
                 });
             return await Task.FromResult<IResult>(TypedResults.Json(roles));
+        }
+
+        [HttpPost]
+        [Route("/roles")]
+        public async Task<IResult> Roles(string role)
+        {
+            var result = await roleManager.CreateAsync(new Role(role));
+            if (result.Succeeded) return Results.Created();
+            return Results.Problem();
+        }
+        
+        [HttpGet]
+        [Route("/roles")]
+        public async Task<IResult> Roles()
+        {
+            var roles = roleManager.Roles;
+            return await Task.FromResult<IResult>(TypedResults.Json(roles));
+        }   
+        
+        [HttpGet]
+        [Route("/roles/total-users/{role}")]
+        public async Task<IResult> TotalUsersRole(string role)
+        {
+            var roleEntity = await roleManager.FindByNameAsync(role);
+
+            if (roleEntity is null) return Results.NotFound();
+
+            var usersInRole = await userManager.GetUsersInRoleAsync(role);
+            var totalUsers = usersInRole.Count;
+
+            return Results.Ok(totalUsers);
+        }
+        
+
+        [HttpGet]
+        [Route("/claims/{role}")]
+        public async Task<IResult> Claims(string role)
+        {
+            var roleEntity = await roleManager.FindByNameAsync(role);
+            
+            if (roleEntity is null) return Results.NotFound();
+            
+            var claims = await roleManager.GetClaimsAsync(roleEntity);
+            
+            return await Task.FromResult<IResult>(TypedResults.Json(claims));
+        }
+
+        [HttpPost]
+        [Route("/claims/{role}")]
+        public async Task<IResult> Claims(string role, string claim)
+        {
+            var roleEntity = await roleManager.FindByNameAsync(role);
+            
+            if (roleEntity is null) return Results.NotFound();
+
+            var result = await roleManager.AddClaimAsync(roleEntity, new Claim("SystemResource", claim));
+
+            if (result.Succeeded) return Results.Created();
+
+            return Results.Problem();
         }
 
         [HttpGet]

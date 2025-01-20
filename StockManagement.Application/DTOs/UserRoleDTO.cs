@@ -1,6 +1,6 @@
 ﻿namespace StockManagement.Application.DTOs
 {
-    public class RoleClaimDTO
+    public class UserRoleDTO
     {
         public string? Issuer { get; set; }
         public string? OriginalIssuer { get; set; }

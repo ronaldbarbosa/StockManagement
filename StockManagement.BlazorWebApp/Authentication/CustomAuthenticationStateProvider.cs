@@ -65,10 +65,10 @@ namespace StockManagement.BlazorWebApp.Authentication
                         => new Claim(x.Key, x.Value))
             );
 
-            RoleClaimDTO[]? roles;
+            UserRoleDTO[]? roles;
             try
             {
-                roles = await _client.GetFromJsonAsync<RoleClaimDTO[]>("roles");
+                roles = await _client.GetFromJsonAsync<UserRoleDTO[]>("user/roles");
                 userInfo = await _client.GetFromJsonAsync<UserDTO>("user/info");
 
                 if (userInfo is not null) claims.Add(new Claim(ClaimTypes.Name, userInfo.Name));

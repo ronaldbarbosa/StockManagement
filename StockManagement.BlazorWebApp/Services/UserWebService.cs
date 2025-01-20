@@ -2,6 +2,7 @@
 using StockManagement.Application.DTOs.Request;
 using StockManagement.Application.DTOs.Response;
 using StockManagement.BlazorWebApp.Services.Interfaces;
+using StockManagement.Shared.IdentityEntities;
 using System.Net;
 using System.Net.Http.Json;
 using System.Text;
@@ -21,12 +22,12 @@ namespace StockManagement.BlazorWebApp.Services
             if (_userDTO is null)
             {
                 var result = await _client.GetAsync("user/info");
-                
+
 
                 if (result.IsSuccessStatusCode)
                 {
                     response.User = await result.Content.ReadFromJsonAsync<UserDTO>();
-                }                
+                }
             }
             else
             {
@@ -58,7 +59,7 @@ namespace StockManagement.BlazorWebApp.Services
             {
                 await GetUserInfoAsync();
                 return new LoginResponse();
-            }                             
+            }
 
             var errors = await result.Content.ReadFromJsonAsync<LoginResponse>();
 
@@ -77,7 +78,7 @@ namespace StockManagement.BlazorWebApp.Services
         public async Task<CreateUserResponse> SignUpAsync(CreateUserRequest request)
         {
             var result = await _client.PostAsJsonAsync("register", request);
-            
+
             if (result.IsSuccessStatusCode) return new CreateUserResponse();
 
             var errors = await result.Content.ReadFromJsonAsync<CreateUserResponse>();
@@ -99,9 +100,37 @@ namespace StockManagement.BlazorWebApp.Services
             return errors ?? new UpdateUserAccessResponse();
         }
 
-        public Task<GetRolesResponse> GetAllRolesAsync()
+        public async Task<GetRolesResponse> GetAllRolesAsync()
         {
-            throw new NotImplementedException();
+            var result = await _client.GetAsync("/roles");
+            var response = new GetRolesResponse();
+
+            if (result.IsSuccessStatusCode)
+            {
+                var roles = await result.Content.ReadFromJsonAsync<List<Role>>();
+
+                foreach (var role in roles)
+                {
+                    var totalUsersResponse = await _client.GetAsync($"/roles/total-users/{role.Name}");
+                    var roleDTO = new RoleDTO
+                    {
+                        Name = role.Name,
+                        Id = role.Id,
+                        NormalizedName = role.NormalizedName,
+                        TotalUsers = totalUsersResponse.IsSuccessStatusCode ? await totalUsersResponse.Content.ReadFromJsonAsync<int>() : 0,
+                        Claims = new List<ClaimDTO>()
+                    };
+
+                    var claimsResult = await _client.GetAsync($"/claims/{role.Name}");
+                    if (claimsResult.IsSuccessStatusCode)
+                    {
+                        roleDTO.Claims = await claimsResult.Content.ReadFromJsonAsync<List<ClaimDTO>>();
+                    }
+
+                    response.Roles.Add(roleDTO);
+                }
+            }
+            return response;
         }
 
         public Task<GetRolesResponse> GetRolesAsync(string userId)
