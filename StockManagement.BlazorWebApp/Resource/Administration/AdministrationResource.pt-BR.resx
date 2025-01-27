@@ -132,4 +132,7 @@
   <data name="ViewRole" xml:space="preserve">
     <value>Ver Cargo</value>
   </data>
+  <data name="AddRole" xml:space="preserve">
+    <value>Adicionar Cargo</value>
+  </data>
 </root>

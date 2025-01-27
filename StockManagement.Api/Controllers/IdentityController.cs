@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using StockManagement.Application.DTOs;
 using StockManagement.Identity.Entities;
-using System.Data;
 using System.Security.Claims;
 
 namespace StockManagement.Api.Controllers
