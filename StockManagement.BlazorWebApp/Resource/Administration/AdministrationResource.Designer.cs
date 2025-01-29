@@ -80,5 +80,11 @@ namespace StockManagement.BlazorWebApp.Resource.Administration {
                 return ResourceManager.GetString("AddRole", resourceCulture);
             }
         }
+        
+        public static string Role {
+            get {
+                return ResourceManager.GetString("Role", resourceCulture);
+            }
+        }
     }
 }

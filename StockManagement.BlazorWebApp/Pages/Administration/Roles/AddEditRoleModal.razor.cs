@@ -1,12 +1,14 @@
 using Microsoft.AspNetCore.Components;
 using StockManagement.Application.DTOs;
+using StockManagement.BlazorWebApp.Services.Interfaces;
 
 namespace StockManagement.BlazorWebApp.Pages.Administration.Roles;
 
 public partial class AddEditRoleModal : ComponentBase
 {
     #region services
-
+    [Inject]
+    public IUserWebService UserWebService { get; set; } = null!;
     #endregion
 
     #region properties
@@ -15,6 +17,8 @@ public partial class AddEditRoleModal : ComponentBase
     [Parameter] public RoleDTO Role { get; set; } = null!;
     [Parameter] public EventCallback OnSave { get; set; }
 
+    private bool Loading { get; set; } = false;
+
     #endregion
 
     #region overrides
@@ -22,6 +26,13 @@ public partial class AddEditRoleModal : ComponentBase
     #endregion
 
     #region methods
+    public async Task SaveAsync()
+    {
+        Loading = true;
+        await UserWebService.CreateRoleAsync(Role.Name);
+        Loading = false;
+    }
+    
     public void Show()
     {
         IsVisible = true;

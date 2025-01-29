@@ -138,9 +138,17 @@ namespace StockManagement.BlazorWebApp.Services
             throw new NotImplementedException();
         }
 
-        public Task<CreateRoleResponse> CreateRoleAsync(string roleName)
+        public async Task<CreateRoleResponse> CreateRoleAsync(string roleName)
         {
-            throw new NotImplementedException();
+            var result = await _client.PostAsJsonAsync("roles", roleName);
+            var response = new CreateRoleResponse();
+
+            if (!result.IsSuccessStatusCode)
+            {
+                result.StatusCode = result.StatusCode;
+            }
+            
+            return response;
         }
     }
 }

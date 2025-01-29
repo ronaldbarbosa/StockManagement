@@ -45,7 +45,7 @@ namespace StockManagement.Api.Controllers
 
         [HttpPost]
         [Route("/roles")]
-        public async Task<IResult> Roles(string role)
+        public async Task<IResult> Roles([FromBody] string role)
         {
             var result = await roleManager.CreateAsync(new Role(role));
             if (result.Succeeded) return Results.Created();

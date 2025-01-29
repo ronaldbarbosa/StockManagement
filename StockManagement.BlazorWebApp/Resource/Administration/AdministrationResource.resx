@@ -135,4 +135,7 @@
   <data name="AddRole" xml:space="preserve">
     <value>Add Role</value>
   </data>
+  <data name="Role" xml:space="preserve">
+    <value>Role</value>
+  </data>
 </root>
